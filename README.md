@@ -13,5 +13,5 @@ R interface to the Leipzig Informationssystem
 ## Installation
 
 ``` r
-remotes::install_github('nrkoehler/lisr)
+remotes::install_github('nrkoehler/lisr')
 ```
