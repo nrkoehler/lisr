@@ -9,7 +9,7 @@ Authors@R: c(person("Norbert", "Koehler",
     role = c("aut", "cre"), 
     comment = c(ORCID = "http://orcid.org/0000-0003-0724-3825")))
 Maintainer: Norbert Koehler <norbert.r.koehler@gmail.com>
-Description: Several functions to import LIS data into R. 
+Description: Functions to import LIS data into R. 
     All data will be imported as data frames.
 License: Data licence Germany - Zero - Version 2.0
 Encoding: UTF-8
