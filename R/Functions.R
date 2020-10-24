@@ -538,6 +538,15 @@ NULL
 #' \dontrun{
 #' get_lis_babynames(year = 2014)
 #' }
+#' @return Data frame with 6 columns
+#' \itemize{
+#' \item {RANG} {Rank of name for girls and boys separately}
+#' \item {ANZAHL} {Number of babys having this name}
+#' \item {VORNAME} {Babyname}
+#' \item {GESCHLECHT} {Sex}
+#' \item {YEAR} {Year}
+#' \item {RANG_GESAMT} {Rank of name for girls and boys together (Computed by function)}
+#' }
 #' @export
 get_lis_babynames <- function(year = 2014) {
   if (year == 2014) id <- "40c25656-03aa-4d86-b27f-79484effb51b"

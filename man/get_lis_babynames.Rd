@@ -9,6 +9,17 @@ get_lis_babynames(year = 2014)
 \arguments{
 \item{year}{Number (2014 to 2019)}
 }
+\value{
+Data frame with 6 columns
+\itemize{
+\item {RANG} {Rank of name for girls and boys separately}
+\item {ANZAHL} {Number of babys having this name}
+\item {VORNAME} {Babyname}
+\item {GESCHLECHT} {Sex}
+\item {YEAR} {Year}
+\item {RANG_GESAMT} {Rank of name for girls and boys together (Computed by function)}
+}
+}
 \description{
 {Leipzig's babynames between 2014 and 2015}
 }

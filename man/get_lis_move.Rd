@@ -9,11 +9,11 @@ get_lis_move(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1 to 5)
 \itemize{
-\item {1 = Geborene und Gestorbene}
-\item {2 = Geborene und Gestorbene}
+\item {1 = Geborene und Gestorbene (Amtliche Daten)}
+\item {2 = Geborene und Gestorbene (Melderegisterdaten)}
 \item {3 = Eheschliessungen und Ehescheidungen}
-\item {4 = Wanderungen}
-\item {5 = Wanderungen}
+\item {4 = Wanderungen (Amtliche Daten)}
+\item {5 = Wanderungen (Melderegisterdaten)}
 }}
 
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}

@@ -9,17 +9,17 @@ get_lis_kd(kategorie_nr = 1)
 \arguments{
 \item{kategorie_nr}{Number (1 to 10 and 12)
 \itemize{
-\item {1 = Geographische Lage}
+\item {1 = Lage und Territorium}
 \item {2 = Bevoelkerungsbestand}
 \item {3 = Bevoelkerungsbewegung}
-\item {4 = Kinder}
+\item {4 = Gesundheit und Soziales}
 \item {5 = Bildung}
 \item {6 = Bautaetigkeit und Wohnen}
 \item {7 = Erwerbstaetigkeit und Arbeitsmarkt}
 \item {8 = Wirtschaft}
 \item {9 = Einkommen und Preise}
 \item {10 = Verkehr}
-\item {12 = Kriminalität}
+\item {12 = Oeffentliche Ordnung und Infrastruktur (Straftaten)}
 }}
 }
 \description{
