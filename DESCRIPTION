@@ -1,12 +1,17 @@
 Package: lisr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R interface to the Leipzig Informationssystem (LIS)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Date: 2020-10-24
+YEAR: 2020
+Authors@R: c(person("Norbert", "Koehler", 
+    email = "norbert.koehler@zks.uni-leipzig.de", 
+    role = c("aut", "cre"), 
+    comment = c(ORCID = "http://orcid.org/0000-0003-0724-3825")))
+Maintainer: Norbert Koehler <norbert.r.koehler@gmail.com>
+Description: Several functions to import LIS data into R. 
+    All data will be imported as data frames.
+License: Data licence Germany - Zero - Version 2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
