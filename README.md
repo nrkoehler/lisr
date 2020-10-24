@@ -7,6 +7,11 @@
 
 <!-- badges: end -->
 
-The goal of lisr is to …
+R interface to the Leipzig Informationssystem
+([LIS](https://statistik.leipzig.de/statserv/servod.aspx)).
 
 ## Installation
+
+``` r
+remotes::install_github('nrkoehler/lisr)
+```
