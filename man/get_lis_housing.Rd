@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_housing}
 \alias{get_lis_housing}
-\title{{Bautaetigkeit und Wohnen}}
+\title{{Bautaetigkeit und Wohnen (Building activity and housing)}}
 \usage{
 get_lis_housing(rubrik_nr = 1, periode = "y")
 }

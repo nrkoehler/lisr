@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_economy}
 \alias{get_lis_economy}
-\title{{Wirtschaft}}
+\title{{Wirtschaft (Economy)}}
 \usage{
 get_lis_economy(rubrik_nr = 1, periode = "y")
 }

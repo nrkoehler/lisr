@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_kd}
 \alias{get_lis_kd}
-\title{{Kleinraeumige Daten}}
+\title{{Kleinraeumige Daten (Leipzig's districts)}}
 \usage{
 get_lis_kd(kategorie_nr = 1)
 }

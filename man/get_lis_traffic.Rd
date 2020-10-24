@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_traffic}
 \alias{get_lis_traffic}
-\title{{Verkehr}}
+\title{{Verkehr (Traffic and public transport)}}
 \usage{
 get_lis_traffic(rubrik_nr = 1, periode = "y")
 }

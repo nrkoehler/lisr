@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_labour}
 \alias{get_lis_labour}
-\title{{Erwerbstaetigkeit und Arbeitsmarkt}}
+\title{{Erwerbstaetigkeit und Arbeitsmarkt (Occupation and labour market)}}
 \usage{
 get_lis_labour(rubrik_nr = 1, periode = "y")
 }

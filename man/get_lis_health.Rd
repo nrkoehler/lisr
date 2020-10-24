@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_health}
 \alias{get_lis_health}
-\title{{Gesundheit und Soziales}}
+\title{{Gesundheit und Soziales (Public health and social affairs)}}
 \usage{
 get_lis_health(rubrik_nr = 1, periode = "y")
 }

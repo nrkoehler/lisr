@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_finances}
 \alias{get_lis_finances}
-\title{{Stadtverwaltung, Kommunalpolitik, Kommunalfinanzen}}
+\title{{Stadtverwaltung, Kommunalpolitik, Kommunalfinanzen (Local administration, politics and finances)}}
 \usage{
 get_lis_finances(rubrik_nr = 1, periode = "y")
 }

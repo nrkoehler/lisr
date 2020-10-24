@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_culture}
 \alias{get_lis_culture}
-\title{{Kultur und Sport}}
+\title{{Kultur und Sport (Culture and sports)}}
 \usage{
 get_lis_culture(rubrik_nr = 1, periode = "y")
 }

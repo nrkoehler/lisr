@@ -1,4 +1,4 @@
-#' @title {Stadtgebiet und Witterung}
+#' @title {Stadtgebiet und Witterung (Administrative area and weather)}
 #' @description {Get data from LIS about geography and weather}
 #' @param rubrik_nr Number (1 to 3)
 #' \itemize{
@@ -34,7 +34,7 @@ get_lis_geo <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Bevoelkerungsbestand}
+#' @title {Bevoelkerungsbestand (Population)}
 #' @description {Get data from LIS about the population of Leipzig}
 #' @param rubrik_nr Number (1, 2, 5)
 #' \itemize{
@@ -70,7 +70,7 @@ get_lis_pop <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Bevoelkerungsbewegung}
+#' @title {Bevoelkerungsbewegung (Population movement)}
 #' @description {Get data from LIS about population movement}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
@@ -107,7 +107,7 @@ get_lis_move <- function(rubrik_nr = 1,
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
 }
-#' @title {Gesundheit und Soziales}
+#' @title {Gesundheit und Soziales (Public health and social affairs)}
 #' @description {Get data from LIS about public health and social affairs}
 #' @param rubrik_nr Number (1, 2, 4)
 #' \itemize{
@@ -143,7 +143,7 @@ get_lis_health <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Bildung}
+#' @title {Bildung (Education)}
 #' @description {Get data from LIS about education}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
@@ -181,7 +181,7 @@ get_lis_edu <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Bautaetigkeit und Wohnen}
+#' @title {Bautaetigkeit und Wohnen (Building activity and housing)}
 #' @description {Get data from LIS about building activity and housing}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
@@ -219,7 +219,7 @@ get_lis_housing <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Erwerbstaetigkeit und Arbeitsmarkt}
+#' @title {Erwerbstaetigkeit und Arbeitsmarkt (Occupation and labour market)}
 #' @description {Get data from LIS about occupation and labour market}
 #' @param rubrik_nr Number (1 to 3)
 #' \itemize{
@@ -255,7 +255,7 @@ get_lis_labour <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Wirtschaft}
+#' @title {Wirtschaft (Economy)}
 #' @description {Get data from LIS about economy}
 #' @param rubrik_nr Number (1 to 12)
 #' \itemize{
@@ -300,8 +300,8 @@ get_lis_economy <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Einkommen und Preise}
-#' @description {Get data from LIS about wages and prices}
+#' @title {Einkommen und Preise (Income and prices)}
+#' @description {Get data from LIS about income and prices}
 #' @param rubrik_nr Number (1 to 2)
 #' \itemize{
 #' \item {1 = Lebensunterhalt}
@@ -335,7 +335,7 @@ get_lis_money <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Verkehr}
+#' @title {Verkehr (Traffic and public transport)}
 #' @description {Get data from LIS about traffic and public transport}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
@@ -373,7 +373,7 @@ get_lis_traffic <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Kultur und Sport}
+#' @title {Kultur und Sport (Culture and sports)}
 #' @description {Get data from LIS about culture and sports}
 #' @param rubrik_nr Number (1 to 7)
 #' \itemize{
@@ -413,7 +413,7 @@ get_lis_culture <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Energie und Umwelt}
+#' @title {Energie und Umwelt (Energy and environment)}
 #' @description {Get data from LIS about energy and environment}
 #' @param rubrik_nr Number (1, 3, 4)
 #' \itemize{
@@ -449,7 +449,7 @@ get_lis_environ <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Stadtverwaltung, Kommunalpolitik, Kommunalfinanzen}
+#' @title {Stadtverwaltung, Kommunalpolitik, Kommunalfinanzen (Local administration, politics and finances)}
 #' @description {Get data from LIS about local administration, politics and finances}
 #' @param rubrik_nr Number (1 to 10)
 #' \itemize{
@@ -492,7 +492,7 @@ get_lis_finances <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Wahlen}
+#' @title {Wahlen (Polls)}
 #' @description {Get data from LIS about polls}
 #' @param rubrik_nr Number (1 to 4)
 #' \itemize{
@@ -578,7 +578,7 @@ get_lis_babynames <- function(year = 2014) {
   data
 }
 NULL
-#' @title {Kleinraeumige Daten}
+#' @title {Kleinraeumige Daten (Leipzig's districts)}
 #' @description {Get data from LIS about Leipzig's districts}
 #' @param kategorie_nr Number (1 to 10 and 12)
 #' \itemize{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_geo}
 \alias{get_lis_geo}
-\title{{Stadtgebiet und Witterung}}
+\title{{Stadtgebiet und Witterung (Administrative area and weather)}}
 \usage{
 get_lis_geo(rubrik_nr = 1, periode = "y")
 }

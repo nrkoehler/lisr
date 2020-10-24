@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_money}
 \alias{get_lis_money}
-\title{{Einkommen und Preise}}
+\title{{Einkommen und Preise (Income and prices)}}
 \usage{
 get_lis_money(rubrik_nr = 1, periode = "y")
 }
@@ -16,7 +16,7 @@ get_lis_money(rubrik_nr = 1, periode = "y")
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
-{Get data from LIS about wages and prices}
+{Get data from LIS about income and prices}
 }
 \examples{
 \dontrun{

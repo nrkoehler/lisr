@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_move}
 \alias{get_lis_move}
-\title{{Bevoelkerungsbewegung}}
+\title{{Bevoelkerungsbewegung (Population movement)}}
 \usage{
 get_lis_move(rubrik_nr = 1, periode = "y")
 }

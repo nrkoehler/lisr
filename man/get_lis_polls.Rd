@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_polls}
 \alias{get_lis_polls}
-\title{{Wahlen}}
+\title{{Wahlen (Polls)}}
 \usage{
 get_lis_polls(rubrik_nr = 1, periode = "y")
 }

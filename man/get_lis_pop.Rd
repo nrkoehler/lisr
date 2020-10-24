@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_pop}
 \alias{get_lis_pop}
-\title{{Bevoelkerungsbestand}}
+\title{{Bevoelkerungsbestand (Population)}}
 \usage{
 get_lis_pop(rubrik_nr = 1, periode = "y")
 }

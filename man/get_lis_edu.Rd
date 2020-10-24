@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_edu}
 \alias{get_lis_edu}
-\title{{Bildung}}
+\title{{Bildung (Education)}}
 \usage{
 get_lis_edu(rubrik_nr = 1, periode = "y")
 }

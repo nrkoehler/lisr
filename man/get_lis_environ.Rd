@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_environ}
 \alias{get_lis_environ}
-\title{{Energie und Umwelt}}
+\title{{Energie und Umwelt (Energy and environment)}}
 \usage{
 get_lis_environ(rubrik_nr = 1, periode = "y")
 }
