@@ -2,7 +2,7 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_babynames}
 \alias{get_lis_babynames}
-\title{{Vornamen}}
+\title{{Vornamen (Babynames)}}
 \usage{
 get_lis_babynames(year = 2014)
 }
@@ -12,16 +12,16 @@ get_lis_babynames(year = 2014)
 \value{
 Data frame with 6 columns
 \itemize{
-\item {RANG} {Rank of name for girls and boys separately}
-\item {ANZAHL} {Number of babys having this name}
-\item {VORNAME} {Babyname}
-\item {GESCHLECHT} {Sex}
-\item {YEAR} {Year}
-\item {RANG_GESAMT} {Rank of name for girls and boys together (Computed by function)}
+\item {RANG} {(Rank of name for girls and boys separately)}
+\item {ANZAHL} {(Number of babys having this name)}
+\item {VORNAME} {(Babyname)}
+\item {GESCHLECHT} {(Sex)}
+\item {YEAR} {(Year)}
+\item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 }
 }
 \description{
-{Leipzig's babynames between 2014 and 2015}
+{Leipzig's babynames between 2014 and 2019}
 }
 \examples{
 \dontrun{

@@ -529,8 +529,8 @@ get_lis_polls <- function(rubrik_nr = 1,
   data
 }
 NULL
-#' @title {Vornamen}
-#' @description {Leipzig's babynames between 2014 and 2015}
+#' @title {Vornamen (Babynames)}
+#' @description {Leipzig's babynames between 2014 and 2019}
 #' @param year Number (2014 to 2019)
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
@@ -540,12 +540,12 @@ NULL
 #' }
 #' @return Data frame with 6 columns
 #' \itemize{
-#' \item {RANG} {Rank of name for girls and boys separately}
-#' \item {ANZAHL} {Number of babys having this name}
-#' \item {VORNAME} {Babyname}
-#' \item {GESCHLECHT} {Sex}
-#' \item {YEAR} {Year}
-#' \item {RANG_GESAMT} {Rank of name for girls and boys together (Computed by function)}
+#' \item {RANG} {(Rank of name for girls and boys separately)}
+#' \item {ANZAHL} {(Number of babys having this name)}
+#' \item {VORNAME} {(Babyname)}
+#' \item {GESCHLECHT} {(Sex)}
+#' \item {YEAR} {(Year)}
+#' \item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 #' }
 #' @export
 get_lis_babynames <- function(year = 2014) {
