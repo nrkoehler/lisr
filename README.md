@@ -90,7 +90,7 @@ ggplot(df.sub, aes(x = Year,
   geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
   scale_y_continuous(breaks = seq(480, 650, 10)) +
-  theme_light() +
+  hrbrthemes::theme_modern_rc() +
   theme(legend.position = 'bottom') +
   labs(colour = NULL,
        y = 'Inhabitants (1.000)',
@@ -163,7 +163,7 @@ ggplot(df.sub, aes(x = Year,
   geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
    scale_y_continuous(breaks = seq(4, 9, 1)) +
-  theme_light() +
+  hrbrthemes::theme_modern_rc() +
   theme(legend.position = 'bottom') +
   labs(colour = NULL,
        y = '€ / m²',
@@ -255,7 +255,6 @@ ggplot(df.sub, aes(x = Year,
   geom_point(colour = 'red3') +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
   geom_smooth(method = 'lm') +
-   # scale_y_continuous(breaks = seq(4, 9, 1)) +
   tidyquant::theme_tq() +
   theme(legend.position = 'bottom') +
   facet_wrap(.~KENNZIFFER, nrow = 2, scales = 'free') +
