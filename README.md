@@ -23,14 +23,6 @@ remotes::install_github('nrkoehler/lisr')
 ``` r
 library(lisr)
 library(tidyverse)
-#> ── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-#> ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-#> ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-#> ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-#> ✓ readr   1.4.0     ✓ forcats 0.5.0
-#> ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
-#> x dplyr::filter() masks stats::filter()
-#> x dplyr::lag()    masks stats::lag()
 
 df.POP <- get_lis_pop(rubrik_nr = 1) # inhabitants
 ```
@@ -91,8 +83,10 @@ df.POP_sub <- df.POP_sub %>%
 
 ``` r
 ggplot(df.POP_sub, aes(x = Year, 
-                       y = Inhabitants/1000)) +
-  geom_line(aes(colour = KENNZIFFER)) +
+                       y = Inhabitants/1000,
+                       colour = KENNZIFFER)) +
+  geom_line() +
+  geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
   scale_y_continuous(breaks = seq(480, 650, 10)) +
   theme_light() +
@@ -161,15 +155,17 @@ df.HOUSING_sub <- df.HOUSING_sub %>%
 
 ``` r
 ggplot(df.HOUSING_sub, aes(x = Year, 
-                       y = Rent)) +
-  geom_line(aes(colour = KENNZIFFER)) +
+                       y = Rent,
+                       colour = KENNZIFFER)) +
+  geom_line() +
+  geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
    scale_y_continuous(breaks = seq(4, 9, 1)) +
   theme_light() +
   theme(legend.position = 'bottom') +
   labs(colour = NULL,
        y = '€/m²',
-       title = 'Median rent in €/m²',
+       title = 'Median rent in Leipzig',
        subtitle = '2000 to 2019',
        caption = 'Source: Leipzig Informationssystem, 2020')
 ```
