@@ -19,10 +19,105 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-R interface to the Leipzig Informationssystem ([LIS](https://statistik.leipzig.de/statserv/servod.aspx)).
+R interface to the `Leipzig Informationssystem` ([LIS](https://statistik.leipzig.de/statserv/servod.aspx)).
 
 ## Installation
 
 ```{r installation, eval = FALSE}
 remotes::install_github('nrkoehler/lisr')
+```
+
+
+## Usage
+
+### Population
+
+```{r pop-import}
+library(lisr)
+library(tidyverse)
+
+df.POP <- get_lis_pop(rubrik_nr = 1) # inhabitants
+
+```
+
+
+```{r pop-glimpse}
+glimpse(df.POP)
+df.POP$KENNZIFFER
+```
+
+
+```{r pop-filter}
+df.POP_sub <- df.POP %>% 
+  filter(KENNZIFFER == 'Bevölkerung insgesamt') %>% 
+  select(-EINHEIT) %>% 
+  mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2', 'Estimate 3'))
+  
+```
+
+```{r pop-long}
+df.POP_sub <- df.POP_sub %>% 
+  pivot_longer(cols = starts_with('JAHR'),
+               names_to = 'Year',
+               values_to = 'Inhabitants') %>% 
+  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+```
+
+
+```{r pop-plot}
+ggplot(df.POP_sub, aes(x = Year, 
+                       y = Inhabitants/1000)) +
+  geom_line(aes(colour = KENNZIFFER)) +
+  scale_x_continuous(breaks = seq(2000, 2019, 2)) +
+  scale_y_continuous(breaks = seq(480, 650, 10)) +
+  theme_light() +
+  theme(legend.position = 'bottom') +
+  labs(colour = NULL,
+       y = 'Inhabitants (1.000)',
+       title = 'Population of Leipzig',
+       subtitle = 'Number of inhabitants (2000 to 2019)',
+       caption = 'Source: Leipzig Informationssystem, 2020')
+```
+
+### Housing
+
+```{r housing-import}
+df.HOUSING <- get_lis_housing(rubrik_nr = 3) # flat rents
+```
+
+```{r housing-glimpse}
+glimpse(df.HOUSING)
+df.HOUSING$KENNZIFFER
+```
+
+
+```{r housing-filter}
+df.HOUSING_sub <- df.HOUSING %>% 
+  filter(KENNZIFFER == 'Haushalte insgesamt') %>% 
+  mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2'))
+  
+```
+
+```{r housing-long}
+df.HOUSING_sub <- df.HOUSING_sub %>% 
+  pivot_longer(cols = starts_with('JAHR'),
+               names_to = 'Year',
+               values_to = 'Rent') %>% 
+  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+```
+
+
+```{r housing-plot}
+ggplot(df.HOUSING_sub, aes(x = Year, 
+                       y = Rent)) +
+  geom_line(aes(colour = KENNZIFFER)) +
+  scale_x_continuous(breaks = seq(2000, 2019, 2)) +
+   scale_y_continuous(breaks = seq(4, 9, 1)) +
+  theme_light() +
+  theme(legend.position = 'bottom') +
+  labs(colour = NULL,
+       y = '€/m²',
+       title = 'Median rent in €/m²',
+       subtitle = '2000 to 2019',
+       caption = 'Source: Leipzig Informationssystem, 2020')
 ```
