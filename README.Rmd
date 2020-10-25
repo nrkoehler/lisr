@@ -40,26 +40,27 @@ library(lisr)
 library(tidyverse)
 
 df.POP <- get_lis_pop(rubrik_nr = 1) # inhabitants
+df <- df.POP
 
 ```
 
 
 ```{r pop-glimpse}
-glimpse(df.POP)
-df.POP$KENNZIFFER
+glimpse(df)
+df$KENNZIFFER
 ```
 
 
 ```{r pop-filter}
-df.POP_sub <- df.POP %>% 
+df.POP_sub <- df %>% 
   filter(KENNZIFFER == 'Bevölkerung insgesamt') %>% 
   select(-EINHEIT) %>% 
   mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2', 'Estimate 3'))
-  
+df.sub <- df.POP_sub
 ```
 
 ```{r pop-long}
-df.POP_sub <- df.POP_sub %>% 
+df.sub <- df.sub %>% 
   pivot_longer(cols = starts_with('JAHR'),
                names_to = 'Year',
                values_to = 'Inhabitants') %>% 
@@ -68,7 +69,7 @@ df.POP_sub <- df.POP_sub %>%
 
 
 ```{r pop-plot}
-ggplot(df.POP_sub, aes(x = Year, 
+ggplot(df.sub, aes(x = Year, 
                        y = Inhabitants/1000,
                        colour = KENNZIFFER)) +
   geom_line() +
@@ -88,23 +89,24 @@ ggplot(df.POP_sub, aes(x = Year,
 
 ```{r housing-import}
 df.HOUSING <- get_lis_housing(rubrik_nr = 3) # flat rents
+df <- df.HOUSING
 ```
 
 ```{r housing-glimpse}
-glimpse(df.HOUSING)
-df.HOUSING$KENNZIFFER
+glimpse(df)
+df$KENNZIFFER
 ```
 
 
 ```{r housing-filter}
-df.HOUSING_sub <- df.HOUSING %>% 
+df.HOUSING_sub <- df %>% 
   filter(KENNZIFFER == 'Haushalte insgesamt') %>% 
   mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2'))
-  
+df.sub <- df.HOUSING_sub  
 ```
 
 ```{r housing-long}
-df.HOUSING_sub <- df.HOUSING_sub %>% 
+df.sub <- df.sub %>% 
   pivot_longer(cols = starts_with('JAHR'),
                names_to = 'Year',
                values_to = 'Rent') %>% 
@@ -113,7 +115,7 @@ df.HOUSING_sub <- df.HOUSING_sub %>%
 
 
 ```{r housing-plot}
-ggplot(df.HOUSING_sub, aes(x = Year, 
+ggplot(df.sub, aes(x = Year, 
                        y = Rent,
                        colour = KENNZIFFER)) +
   geom_line() +
@@ -123,8 +125,62 @@ ggplot(df.HOUSING_sub, aes(x = Year,
   theme_light() +
   theme(legend.position = 'bottom') +
   labs(colour = NULL,
-       y = '€/m²',
+       y = '€ / m²',
        title = 'Median rent in Leipzig',
+       subtitle = '2000 to 2019',
+       caption = 'Source: Leipzig Informationssystem, 2020')
+```
+
+
+### Weather
+
+```{r weather-import}
+df.WEATHER <- get_lis_geo(rubrik_nr = 3) # weather
+df <- df.WEATHER %>% 
+  select(-EINHEIT)
+```
+
+```{r weather-glimpse}
+glimpse(df)
+df$KENNZIFFER
+```
+
+
+```{r weather-filter}
+df.WEATHER_sub <- df %>%
+  filter(KENNZIFFER == "Lufttemperatur (Jahresmittel)" |
+    KENNZIFFER == "Niederschlagshöhe (Jahressumme)") %>%
+  mutate(KENNZIFFER = case_when(
+    KENNZIFFER == "Lufttemperatur (Jahresmittel)" ~ "Temperature in °C (yearly mean)",
+    KENNZIFFER == "Niederschlagshöhe (Jahressumme)" ~ "Rain in l (yearly sum)",
+    TRUE ~ as.character(NA)
+  ))
+df.sub <- df.WEATHER_sub  
+```
+
+```{r weather-long}
+df.sub <- df.sub %>% 
+  pivot_longer(cols = starts_with('JAHR'),
+               names_to = 'Year',
+               values_to = 'Value') %>% 
+  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+```
+
+
+```{r weather-plot}
+ggplot(df.sub, aes(x = Year, 
+                       y = Value)) +
+  geom_step() +
+  geom_point(colour = 'red3') +
+  scale_x_continuous(breaks = seq(2000, 2019, 2)) +
+  geom_smooth(method = 'lm') +
+   # scale_y_continuous(breaks = seq(4, 9, 1)) +
+  tidyquant::theme_tq() +
+  theme(legend.position = 'bottom') +
+  facet_wrap(.~KENNZIFFER, nrow = 2, scales = 'free') +
+  labs(x = NULL,
+       y = NULL,
+       title = 'Temperature and rain in Leipzig',
        subtitle = '2000 to 2019',
        caption = 'Source: Leipzig Informationssystem, 2020')
 ```
