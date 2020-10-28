@@ -582,17 +582,17 @@ NULL
 #' @description {Get data from LIS about Leipzig's districts}
 #' @param kategorie_nr Number (1 to 10 and 12)
 #' \itemize{
-#' \item {1 = Lage und Territorium}
-#' \item {2 = Bevoelkerungsbestand}
-#' \item {3 = Bevoelkerungsbewegung}
-#' \item {4 = Gesundheit und Soziales}
-#' \item {5 = Bildung}
-#' \item {6 = Bautaetigkeit und Wohnen}
-#' \item {7 = Erwerbstaetigkeit und Arbeitsmarkt}
-#' \item {8 = Wirtschaft}
-#' \item {9 = Einkommen und Preise}
-#' \item {10 = Verkehr}
-#' \item {12 = Oeffentliche Ordnung und Infrastruktur (Straftaten)}
+#' \item {1 = Lage und Territorium (Geography)}
+#' \item {2 = Bevoelkerungsbestand (Population)}
+#' \item {3 = Bevoelkerungsbewegung (Population movement)}
+#' \item {4 = Gesundheit und Soziales (Public health and social affairs)}
+#' \item {5 = Bildung (Education)}
+#' \item {6 = Bautaetigkeit und Wohnen (Building activity and housing)}
+#' \item {7 = Erwerbstaetigkeit und Arbeitsmarkt (Occupation and labour market)}
+#' \item {8 = Wirtschaft (Economy)}
+#' \item {9 = Einkommen und Preise (Income and prices)}
+#' \item {10 = Verkehr (Traffic)}
+#' \item {12 = Oeffentliche Ordnung und Infrastruktur (Crime)}
 #' }
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
