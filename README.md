@@ -16,6 +16,11 @@ R interface to the `Leipzig Informationssystem`
 remotes::install_github('nrkoehler/lisr')
 ```
 
+## Documentation
+
+The package documentation can be found at [Github
+Pages](https://nrkoehler.github.io/lisr/).
+
 ## Usage
 
 ### Population
