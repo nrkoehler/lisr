@@ -209,6 +209,11 @@ ggplot(df.sub, aes(
 # Map
 
 ```{r map}
+df.centres <- df.DISTRICTS_LARGE %>% 
+  group_by(group) %>% 
+  summarise(LON = mean(lon), 
+            LAT = mean(lat))
+
 ggplot(aes(x = lon, y = lat, group = group), data = df.DISTRICTS_SMALL) +
   hrbrthemes::theme_modern_rc() +
   theme(
@@ -217,13 +222,15 @@ ggplot(aes(x = lon, y = lat, group = group), data = df.DISTRICTS_SMALL) +
     axis.text.x = element_blank(),
     axis.text.y = element_blank()
   ) +
-  coord_quickmap() +
+  coord_map() +
   geom_polygon(fill = NA, size = 0.2, color = "#354C6A") +
-  geom_polygon(color = "#004CFF", size = 1, fill = NA, data = df.DISTRICTS_LARGE) +
+  geom_polygon(color = "#004CFF", size = 0.5, fill = NA, data = df.DISTRICTS_LARGE) +
   labs(
     title = "Map of Leipzig",
     x = NULL,
     y = NULL,
     caption = "Boundaries of greater administrative and smaller local districts."
-  )
+  ) +
+  annotate('text', x = df.centres$LON, y = df.centres$LAT, label = df.centres$group,
+           colour = '#E2E3E7')
 ```

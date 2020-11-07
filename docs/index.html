@@ -345,6 +345,11 @@
 <h1 class="hasAnchor">
 <a href="#map" class="anchor"></a>Map</h1>
 <div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">df.centres</span> <span class="op">&lt;-</span> <span class="va">df.DISTRICTS_LARGE</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>LON <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lon</span><span class="op">)</span>, 
+            LAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lat</span><span class="op">)</span><span class="op">)</span>
+
 <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df.DISTRICTS_SMALL</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">theme</span><span class="op">(</span>
@@ -353,15 +358,17 @@
     axis.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
     axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_quickmap</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">coord_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_polygon</span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span>, size <span class="op">=</span> <span class="fl">0.2</span>, color <span class="op">=</span> <span class="st">"#354C6A"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_polygon</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#004CFF"</span>, size <span class="op">=</span> <span class="fl">1</span>, fill <span class="op">=</span> <span class="cn">NA</span>, data <span class="op">=</span> <span class="va">df.DISTRICTS_LARGE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_polygon</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#004CFF"</span>, size <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="cn">NA</span>, data <span class="op">=</span> <span class="va">df.DISTRICTS_LARGE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">labs</span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Map of Leipzig"</span>,
     x <span class="op">=</span> <span class="cn">NULL</span>,
     y <span class="op">=</span> <span class="cn">NULL</span>,
     caption <span class="op">=</span> <span class="st">"Boundaries of greater administrative and smaller local districts."</span>
-  <span class="op">)</span></pre></div>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu">annotate</span><span class="op">(</span><span class="st">'text'</span>, x <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LON</span>, y <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LAT</span>, label <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">group</span>,
+           colour <span class="op">=</span> <span class="st">'#E2E3E7'</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-map-1.png" width="100%"></p>
 </div>
 
