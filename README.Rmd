@@ -187,3 +187,24 @@ ggplot(df.sub, aes(x = Year,
        subtitle = '2000 to 2019',
        caption = 'Source: Leipzig Informationssystem, 2020')
 ```
+
+
+# Map
+
+```{r map}
+library(ggplot2)
+ggplot(aes(x=lon, y=lat), data=df.DISTRICTS_SMALL) +
+  hrbrthemes::theme_modern_rc() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  coord_quickmap() +
+  geom_polygon(aes(x = lon, y = lat, group = group), fill=NA, size = 0.2,  color = 'grey') +
+  geom_polygon(aes(x = lon, y = lat, group = group), color = '#004CFF', size = 1, fill = NA, data=df.DISTRICTS_LARGE) +
+  labs(title = "Map of Leipzig", 
+       x = NULL,
+       y = NULL,
+       caption = "Boundaries of greater administrative and smaller local districts.")
+
+```
