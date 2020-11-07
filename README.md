@@ -13,7 +13,7 @@ R interface to the `Leipzig Informationssystem`
 ## Installation
 
 ``` r
-remotes::install_github('nrkoehler/lisr')
+remotes::install_github("nrkoehler/lisr")
 ```
 
 ## Documentation
@@ -72,36 +72,42 @@ df$KENNZIFFER
 ```
 
 ``` r
-df.POP_sub <- df %>% 
-  filter(KENNZIFFER == 'Bevölkerung insgesamt') %>% 
-  select(-EINHEIT) %>% 
-  mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2', 'Estimate 3'))
+df.POP_sub <- df %>%
+  filter(KENNZIFFER == "Bevölkerung insgesamt") %>%
+  select(-EINHEIT) %>%
+  mutate(KENNZIFFER = c("Estimate 1", "Estimate 2", "Estimate 3"))
 df.sub <- df.POP_sub
 ```
 
 ``` r
-df.sub <- df.sub %>% 
-  pivot_longer(cols = starts_with('JAHR'),
-               names_to = 'Year',
-               values_to = 'Inhabitants') %>% 
-  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+df.sub <- df.sub %>%
+  pivot_longer(
+    cols = starts_with("JAHR"),
+    names_to = "Year",
+    values_to = "Inhabitants"
+  ) %>%
+  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
 ```
 
 ``` r
-ggplot(df.sub, aes(x = Year, 
-                       y = Inhabitants/1000,
-                       colour = KENNZIFFER)) +
+ggplot(df.sub, aes(
+  x = Year,
+  y = Inhabitants / 1000,
+  colour = KENNZIFFER
+)) +
   geom_line() +
   geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
   scale_y_continuous(breaks = seq(480, 650, 20)) +
   hrbrthemes::theme_modern_rc() +
-  theme(legend.position = 'bottom') +
-  labs(colour = NULL,
-       y = 'Inhabitants (1.000)',
-       title = 'Population of Leipzig',
-       subtitle = 'Number of inhabitants (2000 to 2019)',
-       caption = 'Source: Leipzig Informationssystem, 2020')
+  theme(legend.position = "bottom") +
+  labs(
+    colour = NULL,
+    y = "Inhabitants (1.000)",
+    title = "Population of Leipzig",
+    subtitle = "Number of inhabitants (2000 to 2019)",
+    caption = "Source: Leipzig Informationssystem, 2020"
+  )
 ```
 
 <img src="man/figures/README-pop-plot-1.png" width="100%" />
@@ -146,35 +152,41 @@ df$KENNZIFFER
 ```
 
 ``` r
-df.HOUSING_sub <- df %>% 
-  filter(KENNZIFFER == 'Haushalte insgesamt') %>% 
-  mutate(KENNZIFFER = c('Estimate 1', 'Estimate 2'))
-df.sub <- df.HOUSING_sub  
+df.HOUSING_sub <- df %>%
+  filter(KENNZIFFER == "Haushalte insgesamt") %>%
+  mutate(KENNZIFFER = c("Estimate 1", "Estimate 2"))
+df.sub <- df.HOUSING_sub
 ```
 
 ``` r
-df.sub <- df.sub %>% 
-  pivot_longer(cols = starts_with('JAHR'),
-               names_to = 'Year',
-               values_to = 'Rent') %>% 
-  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+df.sub <- df.sub %>%
+  pivot_longer(
+    cols = starts_with("JAHR"),
+    names_to = "Year",
+    values_to = "Rent"
+  ) %>%
+  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
 ```
 
 ``` r
-ggplot(df.sub, aes(x = Year, 
-                       y = Rent,
-                       colour = KENNZIFFER)) +
+ggplot(df.sub, aes(
+  x = Year,
+  y = Rent,
+  colour = KENNZIFFER
+)) +
   geom_line() +
   geom_point() +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
-   scale_y_continuous(breaks = seq(4, 9, 1)) +
+  scale_y_continuous(breaks = seq(4, 9, 1)) +
   hrbrthemes::theme_modern_rc() +
-  theme(legend.position = 'bottom') +
-  labs(colour = NULL,
-       y = '€ / m²',
-       title = 'Median rent in Leipzig',
-       subtitle = '2000 to 2019',
-       caption = 'Source: Leipzig Informationssystem, 2020')
+  theme(legend.position = "bottom") +
+  labs(
+    colour = NULL,
+    y = "€ / m²",
+    title = "Median rent in Leipzig",
+    subtitle = "2000 to 2019",
+    caption = "Source: Leipzig Informationssystem, 2020"
+  )
 ```
 
 <img src="man/figures/README-housing-plot-1.png" width="100%" />
@@ -183,7 +195,7 @@ ggplot(df.sub, aes(x = Year,
 
 ``` r
 df.WEATHER <- get_lis_geo(rubrik_nr = 3) # weather
-df <- df.WEATHER %>% 
+df <- df.WEATHER %>%
   select(-EINHEIT)
 ```
 
@@ -242,32 +254,38 @@ df.WEATHER_sub <- df %>%
     KENNZIFFER == "Niederschlagshöhe (Jahressumme)" ~ "Rain in l (yearly sum)",
     TRUE ~ as.character(NA)
   ))
-df.sub <- df.WEATHER_sub  
+df.sub <- df.WEATHER_sub
 ```
 
 ``` r
-df.sub <- df.sub %>% 
-  pivot_longer(cols = starts_with('JAHR'),
-               names_to = 'Year',
-               values_to = 'Value') %>% 
-  mutate(Year = as.numeric(str_remove(Year, 'JAHR_')))
+df.sub <- df.sub %>%
+  pivot_longer(
+    cols = starts_with("JAHR"),
+    names_to = "Year",
+    values_to = "Value"
+  ) %>%
+  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
 ```
 
 ``` r
-ggplot(df.sub, aes(x = Year, 
-                       y = Value)) +
+ggplot(df.sub, aes(
+  x = Year,
+  y = Value
+)) +
   geom_step() +
-  geom_point(colour = 'red3') +
+  geom_point(colour = "red3") +
   scale_x_continuous(breaks = seq(2000, 2019, 2)) +
-  geom_smooth(method = 'lm') +
+  geom_smooth(method = "lm") +
   tidyquant::theme_tq() +
-  theme(legend.position = 'bottom') +
-  facet_wrap(.~KENNZIFFER, nrow = 2, scales = 'free') +
-  labs(x = NULL,
-       y = NULL,
-       title = 'Temperature and rain in Leipzig',
-       subtitle = '2000 to 2019',
-       caption = 'Source: Leipzig Informationssystem, 2020')
+  theme(legend.position = "bottom") +
+  facet_wrap(. ~ KENNZIFFER, nrow = 2, scales = "free") +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Temperature and rain in Leipzig",
+    subtitle = "2000 to 2019",
+    caption = "Source: Leipzig Informationssystem, 2020"
+  )
 ```
 
 <img src="man/figures/README-weather-plot-1.png" width="100%" />
@@ -275,20 +293,23 @@ ggplot(df.sub, aes(x = Year,
 # Map
 
 ``` r
-library(ggplot2)
-ggplot(aes(x=lon, y=lat), data=df.DISTRICTS_SMALL) +
+ggplot(aes(x = lon, y = lat, group = group), data = df.DISTRICTS_SMALL) +
   hrbrthemes::theme_modern_rc() +
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank()) +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank()
+  ) +
   coord_quickmap() +
-  geom_polygon(aes(x = lon, y = lat, group = group), fill=NA, size = 0.2,  color = 'grey') +
-  geom_polygon(aes(x = lon, y = lat, group = group), color = '#004CFF', size = 1, fill = NA, data=df.DISTRICTS_LARGE) +
-  labs(title = "Map of Leipzig", 
-       x = NULL,
-       y = NULL,
-       caption = "Boundaries of greater administrative and smaller local districts.")
+  geom_polygon(fill = NA, size = 0.2, color = "#354C6A") +
+  geom_polygon(color = "#004CFF", size = 1, fill = NA, data = df.DISTRICTS_LARGE) +
+  labs(
+    title = "Map of Leipzig",
+    x = NULL,
+    y = NULL,
+    caption = "Boundaries of greater administrative and smaller local districts."
+  )
 ```
 
 <img src="man/figures/README-map-1.png" width="100%" />
