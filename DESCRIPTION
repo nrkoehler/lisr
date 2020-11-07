@@ -17,3 +17,5 @@ LazyData: true
 RoxygenNote: 7.1.1
 URL: https://github.com/nrkoehler/lisr
 BugReports: https://github.com/nrkoehler/lisr/issues
+Depends: 
+    R (>= 2.10)
