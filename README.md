@@ -295,8 +295,8 @@ ggplot(df.sub, aes(
 ``` r
 df.centres <- df.DISTRICTS_LARGE %>% 
   group_by(group) %>% 
-  summarise(LON = (min(lon) + max(lon))/2, 
-            LAT = (min(lat) + max(lat))/2)
+  summarise(LON = mean(lon), 
+            LAT = mean(lat))
 
 
 
