@@ -211,8 +211,10 @@ ggplot(df.sub, aes(
 ```{r map}
 df.centres <- df.DISTRICTS_LARGE %>% 
   group_by(group) %>% 
-  summarise(LON = mean(lon), 
-            LAT = mean(lat))
+  summarise(LON = (min(lon) + max(lon))/2, 
+            LAT = (min(lat) + max(lat))/2)
+
+
 
 ggplot(aes(x = lon, y = lat, group = group), data = df.DISTRICTS_SMALL) +
   hrbrthemes::theme_modern_rc() +

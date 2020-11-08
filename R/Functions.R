@@ -615,3 +615,41 @@ get_lis_kd <- function(kategorie_nr = 1) {
   data
 }
 NULL
+#' @title {Straßenbaumkataster (Trees, planted)}
+#' @description {Trees planted in Leipzig}
+#' @references{
+#' https://opendata.leipzig.de/dataset/strassenbaumkataster/resource/476c4909-89f8-439a-b353-4ee8d28d74d7
+#' }
+#' @examples
+#' \dontrun{
+#' get_lis_trees()
+#' }
+#' @return Data frame with 6 columns
+#' \itemize{
+#' \item {OBJECTID} {(Running number)}
+#' \item {STRASSE_NAME} {(Name of street)}
+#' \item {ORTSTEIL} {(Name of local district)}
+#' \item {BAUMART_WISSENSCHAFTLICH} {(Name of tree, Latin)}
+#' \item {BAUMART_DEUTSCH} {(Name of tree, German)}
+#' \item {PFLANZJAHR} {(Year the tree was planted)}
+#' }
+#' @export
+get_lis_trees <- function(...) {
+  dataset <- "8024d039-9b75-4154-a4ad-05968094f4eb"
+  id <- "476c4909-89f8-439a-b353-4ee8d28d74d7"
+  date <- "12032020"
+  url <- paste0(
+    "https://opendata.leipzig.de/dataset/",
+    dataset, "/resource/",
+    id, "/download/strassenbaumkatasterleipzig",
+    date, ".csv"
+  )
+  tmpFile <- tempfile()
+  download.file(url, destfile = tmpFile, method = "curl")
+  data <- read.csv(tmpFile, dec = ",", sep = ';', fileEncoding = 'latin-9')
+  data$SHAPE <- NULL
+  colnames(data) <- toupper(colnames(data))
+  data$STANDORTNUMMER <- as.character(data$STANDORTNUMMER)
+  data
+}
+NULL
