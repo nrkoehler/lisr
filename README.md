@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lisr <img src='man/figures/logo.png' align="right" height="139" />
+# lisr <img src='man/figures/logo.png' align="right" height="150" />
 
 <!-- badges: start -->
 
