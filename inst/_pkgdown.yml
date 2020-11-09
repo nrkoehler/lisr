@@ -3,8 +3,8 @@ reference:
     desc: "Documentation of the lis package"
     contents:
     - lis
-  - title: "Scoring Functions"
-    desc: "Functions importing LIS data into R"
+  - title: "Import functions"
+    desc: "Functions for importing LIS data into R"
     contents:
     - starts_with("get_lis")
   - title: "Data"
