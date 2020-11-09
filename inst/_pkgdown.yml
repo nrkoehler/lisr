@@ -1,0 +1,16 @@
+reference:
+  - title: "R interface to Leipzig Informationssystem (LIS)"
+    desc: "Documentation of the lis package"
+    contents:
+    - lis
+  - title: "Scoring Functions"
+    desc: "Functions importing LIS data into R"
+    contents:
+    - starts_with("get_lis")
+  - title: "Data"
+    desc: "Additional data"
+    contents:
+    - starts_with("df.")
+
+
+
