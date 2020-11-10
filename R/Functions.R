@@ -31,7 +31,6 @@ get_lis_geo <- function(rubrik_nr = 1,
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
 }
 NULL
 #' @title {Bevoelkerungsbestand (Population)}
@@ -687,5 +686,5 @@ get_lis_streets <- function(...) {
   data <- readxl::read_xlsx(tmpFile)
   colnames(data) <- toupper(colnames(data))
   colnames(data)[5] <- 'STRASSENNAME'
-  data
+  subset(data, !is.na(ORTSTEIL))
 }
