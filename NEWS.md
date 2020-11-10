@@ -1,6 +1,7 @@
 # lisr 0.1.2
 
-* Added `fileEncoding = 'utf-8'` to `get_lis_*()` functions
+* Added `get_lis_streets()` Access Leipzig's street register.
+* Added `fileEncoding = 'utf-8'` to `get_lis_*()` functions.
 
 # lisr 0.1.1
 
