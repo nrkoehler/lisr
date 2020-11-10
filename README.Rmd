@@ -217,14 +217,14 @@ df.centres <- df.DISTRICTS_LARGE %>%
 
 
 ggplot(aes(x = lon, y = lat, group = group), data = df.DISTRICTS_SMALL) +
-  hrbrthemes::theme_modern_rc() +
+  hrbrthemes::theme_modern_rc(base_family = 'Arial') +
   theme(
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     axis.text.x = element_blank(),
     axis.text.y = element_blank()
   ) +
-  coord_map() +
+  coord_quickmap() +
   geom_polygon(fill = NA, size = 0.2, color = "#354C6A") +
   geom_polygon(color = "#004CFF", size = 0.5, fill = NA, data = df.DISTRICTS_LARGE) +
   labs(
