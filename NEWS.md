@@ -1,6 +1,6 @@
 # lisr 0.1.2
 
-* Added "fileEncoding = 'latin-9'" to get_lis_() functions
+* Added `fileEncoding = 'utf-8'` to `get_lis_*()` functions
 
 # lisr 0.1.1
 
