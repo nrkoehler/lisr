@@ -28,7 +28,7 @@ get_lis_geo <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -64,7 +64,7 @@ get_lis_pop <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -102,7 +102,7 @@ get_lis_move <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -137,7 +137,7 @@ get_lis_health <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -213,7 +213,7 @@ get_lis_housing <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -249,7 +249,7 @@ get_lis_labour <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -294,7 +294,7 @@ get_lis_economy <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -329,7 +329,7 @@ get_lis_money <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -367,7 +367,7 @@ get_lis_traffic <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -407,7 +407,7 @@ get_lis_culture <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -443,7 +443,7 @@ get_lis_environ <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -486,7 +486,7 @@ get_lis_finances <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -523,7 +523,7 @@ get_lis_polls <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
@@ -565,7 +565,7 @@ get_lis_babynames <- function(year = 2014) {
 
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   df.f <- data[c("Rang", "Anzahl", "Vorname", "Geschlecht")]
   df.m <- data[c("Rang.1", "Anzahl.1", "Vorname.1", "Geschlecht.1")]
   colnames(df.m) <- colnames(df.f)
@@ -609,7 +609,7 @@ get_lis_kd <- function(kategorie_nr = 1) {
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'latin-9')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
   data
