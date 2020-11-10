@@ -1,8 +1,8 @@
 reference:
   - title: "R interface to Leipzig Informationssystem (LIS)"
-    desc: "Documentation of the lis package"
+    desc: "Documentation of the lisr package"
     contents:
-    - lis
+    - lisr
   - title: "Import functions"
     desc: "Functions for importing LIS data into R"
     contents:
