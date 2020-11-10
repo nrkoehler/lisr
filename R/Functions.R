@@ -653,3 +653,39 @@ get_lis_trees <- function(...) {
   data
 }
 NULL
+#' @title {Strassennamenverzeichnis (Streets register)}
+#' @description {Register of Leipzig's streets}
+#' @references{
+#' https://www.leipzig.de/buergerservice-und-verwaltung/unsere-stadt/gebietsgliederung-und-strassennamen/strassennamen/
+#' }
+#' @examples
+#' \dontrun{
+#' get_lis_trees()
+#' }
+#' @return Data frame with 5 columns
+#' \itemize{
+#' \item {STADTBEZIRKSNUMMER} {(ID of larger administrative districts)}
+#' \item {STADTBEZIRKSNAME} {(Name of larger administrative districts)}
+#' \item {ORTSTEIL} {(ID of smaller local district)}
+#' \item {ORTSTEILNAME} {(Name of smaller local districts)}
+#' \item {STRASSENNAME} {(Street name)}
+#' }
+#' @importFrom readxl read_xlsx
+#' @export
+get_lis_streets <- function(...) {
+  dataset <- "8024d039-9b75-4154-a4ad-05968094f4eb"
+  id <- "476c4909-89f8-439a-b353-4ee8d28d74d7"
+  date <- "12032020"
+  url <- paste0(
+    "https://static.leipzig.de/fileadmin/mediendatenbank/",
+    "leipzig-de/Stadt/02.1_Dez1_Allgemeine_Verwaltung/",
+    "12_Statistik_und_Wahlen/Raumbezug/",
+    "Strassennamenverzeichnis_ot_sbz.xlsx"
+  )
+  tmpFile <- tempfile()
+  download.file(url, destfile = tmpFile, method = "curl")
+  data <- readxl::read_xlsx(tmpFile)
+  colnames(data) <- toupper(colnames(data))
+  colnames(data)[5] <- 'STRASSENNAME'
+  data
+}
