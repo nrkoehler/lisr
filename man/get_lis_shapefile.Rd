@@ -2,9 +2,9 @@
 % Please edit documentation in R/Functions.R
 \name{get_lis_shapefile}
 \alias{get_lis_shapefile}
-\title{{Shapefile mir Grenzen der Bezirke / Ortsteile (Shapefile)}}
+\title{{Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile)}}
 \usage{
-get_lis_shape(shape = "Ortsteile")
+get_lis_shapefile(shape = "Ortsteile", ...)
 }
 \arguments{
 \item{shape}{"Ortsteile" (default) or "Bezirke"}
@@ -23,6 +23,6 @@ Spatial data frame with 5 columns
 }
 \references{
 {
-hhttps://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken
+https://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken
 }
 }

@@ -690,13 +690,12 @@ get_lis_streets <- function(...) {
   subset(data, !is.na(ORTSTEIL))
 }
 NULL
-#' @title {Shapefile mir Grenzen der Bezirke / Ortsteile (Shapefile)}
+#' @title {Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile)}
 #' @description {Shapefile with Leipzig's borders}
 #' @param shape "Ortsteile" (default) or "Bezirke"
 #' @references{
-#' hhttps://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken
+#' https://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken
 #' }
-#' @usage get_lis_shape(shape = "Ortsteile")
 #' @return Spatial data frame with 5 columns
 #' \itemize{
 #' \item {OT} {(ID of smaller local districts)}
