@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lisr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -88,8 +88,8 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"nrkoehler/lisr"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"nrkoehler/lisr"</span><span class="op">)</span></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -102,14 +102,14 @@
 <div id="population" class="section level3">
 <h3 class="hasAnchor">
 <a href="#population" class="anchor"></a>Population</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nrkoehler/lisr">lisr</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nrkoehler/lisr">lisr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">df.POP</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_pop.html">get_lis_pop</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># inhabitants</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.POP</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.POP</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 27</span>
 <span class="co">#&gt; Columns: 22</span>
 <span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Bevölkerung insgesamt", "Männer", "Frauen", "Deutsche",...</span>
@@ -143,23 +143,23 @@
 <span class="co">#&gt; [16] "Ausländer"              "Männer"                 "Frauen"                </span>
 <span class="co">#&gt; [19] "Bevölkerung insgesamt"  "Männer (Melderegister)" "Frauen (Melderegister)"</span>
 <span class="co">#&gt; [22] "Deutsche"               "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [25] "Ausländer"              "Männer"                 "Frauen"</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.POP_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
+<span class="co">#&gt; [25] "Ausländer"              "Männer"                 "Frauen"</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">df.POP_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Bevölkerung insgesamt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">EINHEIT</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estimate 1"</span>, <span class="st">"Estimate 2"</span>, <span class="st">"Estimate 3"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.POP_sub</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.POP_sub</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>
     cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
     names_to <span class="op">=</span> <span class="st">"Year"</span>,
     values_to <span class="op">=</span> <span class="st">"Inhabitants"</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
+  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">Year</span>,
   y <span class="op">=</span> <span class="va">Inhabitants</span> <span class="op">/</span> <span class="fl">1000</span>,
   colour <span class="op">=</span> <span class="va">KENNZIFFER</span>
@@ -176,17 +176,17 @@
     title <span class="op">=</span> <span class="st">"Population of Leipzig"</span>,
     subtitle <span class="op">=</span> <span class="st">"Number of inhabitants (2000 to 2019)"</span>,
     caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></code></pre></div>
+  <span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-pop-plot-1.png" width="100%"></p>
 </div>
 <div id="housing" class="section level3">
 <h3 class="hasAnchor">
 <a href="#housing" class="anchor"></a>Housing</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.HOUSING</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_housing.html">get_lis_housing</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># flat rents</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">df.HOUSING</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_housing.html">get_lis_housing</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># flat rents</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 10</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Haushalte insgesamt", "1-Personen-Haushalte", "2-Person...</span>
@@ -214,22 +214,22 @@
 <span class="co">#&gt;  [3] "2-Personen-Haushalte"           "3-Personen-Haushalte"          </span>
 <span class="co">#&gt;  [5] "4- und Mehr-Personen-Haushalte" "Haushalte insgesamt"           </span>
 <span class="co">#&gt;  [7] "1-Personen-Haushalte"           "2-Personen-Haushalte"          </span>
-<span class="co">#&gt;  [9] "3-Personen-Haushalte"           "4- und Mehr-Personen-Haushalte"</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.HOUSING_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
+<span class="co">#&gt;  [9] "3-Personen-Haushalte"           "4- und Mehr-Personen-Haushalte"</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">df.HOUSING_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Haushalte insgesamt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estimate 1"</span>, <span class="st">"Estimate 2"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING_sub</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING_sub</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>
     cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
     names_to <span class="op">=</span> <span class="st">"Year"</span>,
     values_to <span class="op">=</span> <span class="st">"Rent"</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
+  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">Year</span>,
   y <span class="op">=</span> <span class="va">Rent</span>,
   colour <span class="op">=</span> <span class="va">KENNZIFFER</span>
@@ -246,18 +246,18 @@
     title <span class="op">=</span> <span class="st">"Median rent in Leipzig"</span>,
     subtitle <span class="op">=</span> <span class="st">"2000 to 2019"</span>,
     caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></code></pre></div>
+  <span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-housing-plot-1.png" width="100%"></p>
 </div>
 <div id="weather" class="section level3">
 <h3 class="hasAnchor">
 <a href="#weather" class="anchor"></a>Weather</h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.WEATHER</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_geo.html">get_lis_geo</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># weather</span>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">df.WEATHER</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_geo.html">get_lis_geo</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># weather</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.WEATHER</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">EINHEIT</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">EINHEIT</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 18</span>
 <span class="co">#&gt; Columns: 21</span>
 <span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Lufttemperatur (Jahresmittel)", "Abweichung der Lufttem...</span>
@@ -299,9 +299,9 @@
 <span class="co">#&gt; [15] "Tage im Jahr mit Niederschlagshöhe von mindestens 0,1 mm" </span>
 <span class="co">#&gt; [16] "Tage im Jahr mit Niederschlagshöhe von mindestens 10 mm"  </span>
 <span class="co">#&gt; [17] "Jahresmittel der relativen Luftfeuchte"                   </span>
-<span class="co">#&gt; [18] "Maximale Windspitze"</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.WEATHER_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
+<span class="co">#&gt; [18] "Maximale Windspitze"</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">df.WEATHER_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Lufttemperatur (Jahresmittel)"</span> <span class="op">|</span>
     <span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Niederschlagshöhe (Jahressumme)"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
@@ -309,17 +309,17 @@
     <span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Niederschlagshöhe (Jahressumme)"</span> <span class="op">~</span> <span class="st">"Rain in l (yearly sum)"</span>,
     <span class="cn">TRUE</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span>
   <span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.WEATHER_sub</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.WEATHER_sub</span></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>
     cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
     names_to <span class="op">=</span> <span class="st">"Year"</span>,
     values_to <span class="op">=</span> <span class="st">"Value"</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
+  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">Year</span>,
   y <span class="op">=</span> <span class="va">Value</span>
 <span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -336,7 +336,7 @@
     title <span class="op">=</span> <span class="st">"Temperature and rain in Leipzig"</span>,
     subtitle <span class="op">=</span> <span class="st">"2000 to 2019"</span>,
     caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></code></pre></div>
+  <span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-weather-plot-1.png" width="100%"></p>
 </div>
 </div>
@@ -344,8 +344,8 @@
 <div id="map" class="section level1">
 <h1 class="hasAnchor">
 <a href="#map" class="anchor"></a>Map</h1>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df.centres</span> <span class="op">&lt;-</span> <span class="va">df.DISTRICTS_LARGE</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">df.centres</span> <span class="op">&lt;-</span> <span class="va">df.DISTRICTS_LARGE</span> <span class="op">%&gt;%</span> 
   <span class="fu">group_by</span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">summarise</span><span class="op">(</span>LON <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lon</span><span class="op">)</span>, 
             LAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lat</span><span class="op">)</span><span class="op">)</span>
@@ -370,7 +370,7 @@
     caption <span class="op">=</span> <span class="st">"Boundaries of greater administrative and smaller local districts."</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu">annotate</span><span class="op">(</span><span class="st">'text'</span>, x <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LON</span>, y <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LAT</span>, label <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">group</span>,
-           colour <span class="op">=</span> <span class="st">'#E2E3E7'</span><span class="op">)</span></code></pre></div>
+           colour <span class="op">=</span> <span class="st">'#E2E3E7'</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-map-1.png" width="100%"></p>
 </div>
 

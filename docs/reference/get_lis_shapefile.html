@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stadtgebiet und Witterung (Administrative area and weather) — get_lis_geo • lisr</title>
+<title>Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile) — get_lis_shapefile • lisr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Stadtgebiet und Witterung (Administrative area and weather) — get_lis_geo" />
-<meta property="og:description" content="Get data from LIS about geography and weather" />
+<meta property="og:title" content="Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile) — get_lis_shapefile" />
+<meta property="og:description" content="Shapefile with Leipzig's borders" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -119,43 +119,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stadtgebiet und Witterung (Administrative area and weather)</h1>
+    <h1>Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile)</h1>
     <small class="dont-index">Source: <a href='https://github.com/nrkoehler/lisr/blob/master/R/Functions.R'><code>R/Functions.R</code></a></small>
-    <div class="hidden name"><code>get_lis_geo.Rd</code></div>
+    <div class="hidden name"><code>get_lis_shapefile.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get data from LIS about geography and weather</p>
+    <p>Shapefile with Leipzig's borders</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_lis_geo</span><span class='op'>(</span>rubrik_nr <span class='op'>=</span> <span class='fl'>1</span>, periode <span class='op'>=</span> <span class='st'>"y"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_lis_shapefile</span><span class='op'>(</span>shape <span class='op'>=</span> <span class='st'>"Ortsteile"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>rubrik_nr</th>
-      <td><p>Number (1 to 3)</p><ul>
-<li><p>1 = Geographische Lage</p></li>
-<li><p>2 = Flaeche und Nutzungsarten</p></li>
-<li><p>3 = Wetterdaten</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>periode</th>
-      <td><p>Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.</p></td>
+      <th>shape</th>
+      <td><p>"Ortsteile" (default) or "Bezirke"</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Spatial data frame with 5 columns</p><ul>
+<li><p>OT (ID of smaller local districts)</p></li>
+<li><p>SBZ (ID of larger administrative districts)</p></li>
+<li><p>Name (Name of smaller local /larger administrative districts)</p></li>
+<li><p>geometry (Longitude, latitude etc.)</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>https://statistik.leipzig.de/statserv/servod.aspx</p>
+    <p>https://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>get_lis_geo</span><span class='op'>(</span>rubrik_nr <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
