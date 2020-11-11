@@ -1,3 +1,7 @@
+# lisr 0.1.3
+
+* Added `get_lis_shapefile()` Access shapefiles of Leipzig's Ortsteile / Bezirke.
+
 # lisr 0.1.2
 
 * Added `get_lis_streets()` Access Leipzig's street register.

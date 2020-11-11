@@ -1,8 +1,8 @@
 Package: lisr
 Type: Package
 Title: R interface to the Leipzig Informationssystem (LIS)
-Version: 0.1.2
-Date: 2020-11-10
+Version: 0.1.3
+Date: 2020-11-11
 YEAR: 2020
 Authors@R: c(person("Norbert", "Koehler", 
     email = "norbert.koehler@zks.uni-leipzig.de", 
