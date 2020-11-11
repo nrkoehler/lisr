@@ -688,3 +688,39 @@ get_lis_streets <- function(...) {
   colnames(data)[5] <- 'STRASSENNAME'
   subset(data, !is.na(ORTSTEIL))
 }
+NULL
+#' @title {Shapefile mir Grenzen der Bezirke / Ortsteile (Shapefile)}
+#' @description {Shapefile with Leipzig's borders}
+#' @param shape "Ortsteile" (default) or "Bezirke"
+#' @references{
+#' hhttps://opendata.leipzig.de/dataset/geo-datensatze-zu-ortsteilen-und-stadtbezirken
+#' }
+#' @usage get_lis_shape(shape = "Ortsteile")
+#' @return Spatial data frame with 5 columns
+#' \itemize{
+#' \item {OT} {(ID of smaller local districts)}
+#' \item {SBZ} {(ID of larger administrative districts)}
+#' \item {Name} {(Name of smaller local /larger administrative districts)}
+#' \item {geometry} {(Longitude, latitude etc.)}
+#' }
+#' @importFrom sf st_read
+#' @export
+get_lis_shapefile <- function(shape = "Ortsteile", ...) {
+
+  if (shape == "Ortsteile") x <- "Leipzig_Ortsteile_UTM33N.zip"
+  if (shape == "Bezirke") x <- "Leipzig_Stadtbezirke_UTM33N.zip"
+
+  url <- paste0(
+    "https://www.leipzig.de/fileadmin/mediendatenbank/leipzig-de/Stadt/",
+    "02.1_Dez1_Allgemeine_Verwaltung/12_Statistik_und_Wahlen/Geodaten/",
+    x
+  )
+  temp <- tempfile()
+  temp2 <- tempfile()
+  download.file(url, destfile = temp, method = "curl")
+  unzip(zipfile = temp, exdir = temp2)
+  data <- list.files(temp2, pattern = ".shp$", full.names=TRUE)
+  data <- sf::st_read(data)
+  data
+}
+NULL
