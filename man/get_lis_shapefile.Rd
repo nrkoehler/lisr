@@ -14,7 +14,7 @@ Spatial data frame with 5 columns
 \itemize{
 \item {OT} {(ID of smaller local districts)}
 \item {SBZ} {(ID of larger administrative districts)}
-\item {Name} {(Name of smaller local /larger administrative districts)}
+\item {Name} {(Name of smaller local / larger administrative districts)}
 \item {geometry} {(Longitude, latitude etc.)}
 }
 }
