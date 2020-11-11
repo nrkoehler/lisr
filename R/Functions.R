@@ -31,6 +31,7 @@ get_lis_geo <- function(rubrik_nr = 1,
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
   colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  data
 }
 NULL
 #' @title {Bevoelkerungsbestand (Population)}
