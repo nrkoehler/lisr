@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-R interface to the `Leipzig Informationssystem` ([LIS](https://statistik.leipzig.de/statserv/servod.aspx)).
+R interface to `Leipzig Informationssystem` ([LIS](https://statistik.leipzig.de/statserv/servod.aspx)).
 
 ## Installation
 
