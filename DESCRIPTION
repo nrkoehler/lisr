@@ -1,6 +1,6 @@
 Package: lisr
 Type: Package
-Title: R interface to the Leipzig Informationssystem (LIS)
+Title: R interface to Leipzig Informationssystem (LIS)
 Version: 0.1.3
 Date: 2020-11-11
 YEAR: 2020
