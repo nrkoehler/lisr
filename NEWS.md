@@ -1,3 +1,7 @@
+# lisr 0.1.4
+
+* Added package vignettes.
+
 # lisr 0.1.3
 
 * Added `get_lis_shapefile()` Access shapefiles of Leipzig's Ortsteile / Bezirke.

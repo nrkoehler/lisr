@@ -1,0 +1,87 @@
+---
+title: "Building activity and housing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Building activity and housing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  tidy = 'styler',
+  fig.asp = 0.6,
+  fig.width = 8,
+  out.width = '100%',
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lisr)
+library(tidyverse)
+```
+
+```{r housing-import}
+data <- get_lis_housing(rubrik_nr = 3) # flat rents
+
+```
+
+```{r housing-names}
+colnames(data)
+```
+
+```{r housing-kennziffer}
+data$KENNZIFFER
+
+```
+
+
+```{r}
+data <- data %>% 
+  mutate(MIETE = c(rep('Grundmiete', 5), rep('Gesamtmiete', 5))) %>% 
+  relocate(MIETE)
+```
+
+
+```{r housing-filter}
+data.sub <- data %>%
+  filter(KENNZIFFER == "Haushalte insgesamt") 
+
+```
+
+```{r housing-long}
+data.sub <- data.sub %>%
+  pivot_longer(
+    cols = starts_with("JAHR"),
+    names_to = "Year",
+    values_to = "Rent"
+  ) %>%
+  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
+```
+
+
+```{r housing-plot}
+ggplot(data.sub, aes(
+  x = Year,
+  y = Rent,
+  colour = MIETE
+)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = seq(2000, 2019, 2)) +
+  scale_y_continuous(breaks = seq(4, 9, 1)) +
+  hrbrthemes::theme_modern_rc() +
+  theme(legend.position = "bottom") +
+  labs(
+    colour = NULL,
+    y = "€ / m²",
+    title = "Median rent in Leipzig",
+    subtitle = "2000 to 2019",
+    caption = "Source: Leipzig Informationssystem, 2020"
+  )
+```

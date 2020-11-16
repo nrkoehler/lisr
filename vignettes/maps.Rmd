@@ -1,0 +1,58 @@
+---
+title: "Maps of Leipzig"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Maps of Leipzig}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  tidy = 'styler',
+  fig.asp = 0.6,
+  fig.width = 8,
+  out.width = '100%',
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lisr)
+library(tidyverse)
+library(sf)
+```
+
+```{r map-import}
+df.BZ <- get_lis_shapefile(shape = "Bezirke")
+df.OT <- get_lis_shapefile(shape = "Ortsteile")
+```
+
+
+```{r map-plot}
+
+bezirke <- cbind(df.BZ, st_coordinates(st_centroid(df.BZ)))
+
+ggplot() +
+  geom_sf(data = df.OT, color = "#354C6A", fill = NA) +
+    geom_sf(data = df.BZ, color = "#004CFF", fill = NA) +
+  geom_text(data = bezirke, aes(X, Y, label = Name), size = 5, color = 'white') +
+    hrbrthemes::theme_modern_rc(base_family = 'Arial') +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank()
+  ) +
+    labs(
+    title = "Map of Leipzig",
+    x = NULL,
+    y = NULL,
+    caption = "Boundaries of greater administrative and smaller local districts."
+  )
+```
+
