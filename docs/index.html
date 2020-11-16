@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lisr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -53,6 +53,27 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/housing.html">Building activity and housing</a>
+    </li>
+    <li>
+      <a href="articles/maps.html">Maps of Leipzig</a>
+    </li>
+    <li>
+      <a href="articles/population.html">The population of Leipzig</a>
+    </li>
+    <li>
+      <a href="articles/weather.html">Administrative area and weather</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -77,7 +98,6 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div id="lisr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#lisr-" class="anchor"></a>lisr <img src="reference/figures/logo.png" align="right" height="150">
@@ -99,281 +119,9 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div id="population" class="section level3">
-<h3 class="hasAnchor">
-<a href="#population" class="anchor"></a>Population</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nrkoehler/lisr">lisr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
-<span class="va">df.POP</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_pop.html">get_lis_pop</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># inhabitants</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.POP</span></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 27</span>
-<span class="co">#&gt; Columns: 22</span>
-<span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Bevölkerung insgesamt", "Männer", "Frauen", "Deutsche", "…</span>
-<span class="co">#&gt; $ EINHEIT    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ JAHR_2000  &lt;int&gt; 493208, 237986, 255222, 466069, 219912, 246157, 27139, 180…</span>
-<span class="co">#&gt; $ JAHR_2001  &lt;int&gt; 493052, 238175, 254877, 463959, 219207, 244752, 29093, 189…</span>
-<span class="co">#&gt; $ JAHR_2002  &lt;int&gt; 494795, 239154, 255641, 463717, 219377, 244340, 31078, 197…</span>
-<span class="co">#&gt; $ JAHR_2003  &lt;int&gt; 497531, 240878, 256653, 465230, 220637, 244593, 32301, 202…</span>
-<span class="co">#&gt; $ JAHR_2004  &lt;int&gt; 498491, 240818, 257673, 467644, 222198, 245446, 30847, 186…</span>
-<span class="co">#&gt; $ JAHR_2005  &lt;int&gt; 502651, 243125, 259526, 470903, 224174, 246729, 31748, 189…</span>
-<span class="co">#&gt; $ JAHR_2006  &lt;int&gt; 506578, 245017, 261561, 474597, 226368, 248229, 31981, 186…</span>
-<span class="co">#&gt; $ JAHR_2007  &lt;int&gt; 510512, 247282, 263230, 477724, 228329, 249395, 32788, 189…</span>
-<span class="co">#&gt; $ JAHR_2008  &lt;int&gt; 515469, 250018, 265451, 481941, 230729, 251212, 33528, 192…</span>
-<span class="co">#&gt; $ JAHR_2009  &lt;int&gt; 518862, 251748, 267114, 486564, 233397, 253167, 32298, 183…</span>
-<span class="co">#&gt; $ JAHR_2010  &lt;int&gt; 522883, 253533, 269350, 492686, 236809, 255877, 30197, 167…</span>
-<span class="co">#&gt; $ JAHR_2011  &lt;int&gt; 510043, 245137, 264906, 487244, 232954, 254290, 22799, 121…</span>
-<span class="co">#&gt; $ JAHR_2012  &lt;int&gt; 520838, 251491, 269347, 495062, 237401, 257661, 25776, 140…</span>
-<span class="co">#&gt; $ JAHR_2013  &lt;int&gt; 531562, 257445, 274117, 502719, 241647, 261072, 28843, 157…</span>
-<span class="co">#&gt; $ JAHR_2014  &lt;int&gt; 544479, 264914, 279565, 511069, 246416, 264653, 33410, 184…</span>
-<span class="co">#&gt; $ JAHR_2015  &lt;int&gt; 560472, 274414, 286058, 518473, 250522, 267951, 41999, 238…</span>
-<span class="co">#&gt; $ JAHR_2016  &lt;int&gt; 571088, 280292, 290796, 523565, 253236, 270329, 47523, 270…</span>
-<span class="co">#&gt; $ JAHR_2017  &lt;int&gt; 581980, 285777, 296203, 529804, 256245, 273559, 52176, 295…</span>
-<span class="co">#&gt; $ JAHR_2018  &lt;int&gt; 587857, 288553, 299304, 533218, 257964, 275254, 54639, 305…</span>
-<span class="co">#&gt; $ JAHR_2019  &lt;int&gt; 593145, 291450, 301695, 535813, 259368, 276445, 57332, 320…</span>
-<span class="va">df</span><span class="op">$</span><span class="va">KENNZIFFER</span>
-<span class="co">#&gt;  [1] "Bevölkerung insgesamt"  "Männer"                 "Frauen"                </span>
-<span class="co">#&gt;  [4] "Deutsche"               "Männer"                 "Frauen"                </span>
-<span class="co">#&gt;  [7] "Ausländer"              "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [10] "Bevölkerung insgesamt"  "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [13] "Deutsche"               "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [16] "Ausländer"              "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [19] "Bevölkerung insgesamt"  "Männer (Melderegister)" "Frauen (Melderegister)"</span>
-<span class="co">#&gt; [22] "Deutsche"               "Männer"                 "Frauen"                </span>
-<span class="co">#&gt; [25] "Ausländer"              "Männer"                 "Frauen"</span></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">df.POP_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Bevölkerung insgesamt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">EINHEIT</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estimate 1"</span>, <span class="st">"Estimate 2"</span>, <span class="st">"Estimate 3"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.POP_sub</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
-  <span class="fu">pivot_longer</span><span class="op">(</span>
-    cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
-    names_to <span class="op">=</span> <span class="st">"Year"</span>,
-    values_to <span class="op">=</span> <span class="st">"Inhabitants"</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">Year</span>,
-  y <span class="op">=</span> <span class="va">Inhabitants</span> <span class="op">/</span> <span class="fl">1000</span>,
-  colour <span class="op">=</span> <span class="va">KENNZIFFER</span>
-<span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2019</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">480</span>, <span class="fl">650</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>
-    colour <span class="op">=</span> <span class="cn">NULL</span>,
-    y <span class="op">=</span> <span class="st">"Inhabitants (1.000)"</span>,
-    title <span class="op">=</span> <span class="st">"Population of Leipzig"</span>,
-    subtitle <span class="op">=</span> <span class="st">"Number of inhabitants (2000 to 2019)"</span>,
-    caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></pre></div>
-<p><img src="reference/figures/README-pop-plot-1.png" width="100%"></p>
-</div>
-<div id="housing" class="section level3">
-<h3 class="hasAnchor">
-<a href="#housing" class="anchor"></a>Housing</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">df.HOUSING</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_housing.html">get_lis_housing</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># flat rents</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING</span></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 10</span>
-<span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Haushalte insgesamt", "1-Personen-Haushalte", "2-Personen…</span>
-<span class="co">#&gt; $ EINHEIT    &lt;chr&gt; "Median in Euro pro m²", "Median in Euro pro m²", "Median …</span>
-<span class="co">#&gt; $ JAHR_2000  &lt;dbl&gt; 4.76, 4.72, 4.79, 4.88, 4.58, 6.39, 6.33, 6.44, 6.39, 6.29</span>
-<span class="co">#&gt; $ JAHR_2001  &lt;dbl&gt; 4.73, 4.81, 4.66, 4.81, 4.30, 6.39, 6.39, 6.48, 6.57, 6.08</span>
-<span class="co">#&gt; $ JAHR_2003  &lt;dbl&gt; 4.82, 4.83, 4.91, 4.72, 4.65, 6.53, 6.53, 6.58, 6.55, 6.28</span>
-<span class="co">#&gt; $ JAHR_2005  &lt;dbl&gt; 4.67, 4.69, 4.81, 4.40, 4.51, 6.53, 6.51, 6.65, 6.43, 6.46</span>
-<span class="co">#&gt; $ JAHR_2006  &lt;dbl&gt; 4.86, 4.87, 4.84, 4.98, 4.76, 6.76, 6.78, 6.78, 6.75, 6.50</span>
-<span class="co">#&gt; $ JAHR_2007  &lt;dbl&gt; 4.83, 4.80, 5.00, 4.99, 4.67, 6.90, 6.91, 6.94, 6.93, 6.74</span>
-<span class="co">#&gt; $ JAHR_2008  &lt;dbl&gt; 4.98, 5.00, 4.93, 4.98, 4.67, 6.92, 6.93, 6.89, 6.94, 6.67</span>
-<span class="co">#&gt; $ JAHR_2009  &lt;dbl&gt; 4.98, 5.00, 4.86, 4.82, 5.00, 6.95, 6.92, 7.03, 6.77, 6.70</span>
-<span class="co">#&gt; $ JAHR_2010  &lt;dbl&gt; 5.12, 5.19, 5.00, 4.79, 5.05, 7.12, 7.15, 7.13, 7.05, 6.95</span>
-<span class="co">#&gt; $ JAHR_2011  &lt;dbl&gt; 5.00, 4.97, 5.00, 5.00, 4.87, 7.08, 7.10, 7.08, 7.03, 6.85</span>
-<span class="co">#&gt; $ JAHR_2012  &lt;dbl&gt; 5.145161, 5.145161, 5.172414, 5.000000, 4.687500, 7.200000…</span>
-<span class="co">#&gt; $ JAHR_2013  &lt;dbl&gt; 5.075000, 5.034483, 5.147059, 5.072464, 5.150000, 7.228916…</span>
-<span class="co">#&gt; $ JAHR_2014  &lt;dbl&gt; 5.384615, 5.454241, 5.238831, 5.313516, 5.344841, 7.446808…</span>
-<span class="co">#&gt; $ JAHR_2015  &lt;dbl&gt; 5.294117, 5.244824, 5.333333, 5.488810, 5.326422, 7.500000…</span>
-<span class="co">#&gt; $ JAHR_2016  &lt;dbl&gt; 5.390000, 5.333333, 5.407605, 5.600999, 5.399330, 7.590000…</span>
-<span class="co">#&gt; $ JAHR_2017  &lt;dbl&gt; 5.620000, 5.563269, 5.622829, 5.631813, 5.891208, 7.770000…</span>
-<span class="co">#&gt; $ JAHR_2018  &lt;dbl&gt; 5.875000, 5.833333, 5.938923, 5.961625, 6.187846, 8.208551…</span>
-<span class="co">#&gt; $ JAHR_2019  &lt;dbl&gt; 6.029364, 6.000000, 6.034483, 6.641187, 6.260099, 8.181818…</span>
-<span class="va">df</span><span class="op">$</span><span class="va">KENNZIFFER</span>
-<span class="co">#&gt;  [1] "Haushalte insgesamt"            "1-Personen-Haushalte"          </span>
-<span class="co">#&gt;  [3] "2-Personen-Haushalte"           "3-Personen-Haushalte"          </span>
-<span class="co">#&gt;  [5] "4- und Mehr-Personen-Haushalte" "Haushalte insgesamt"           </span>
-<span class="co">#&gt;  [7] "1-Personen-Haushalte"           "2-Personen-Haushalte"          </span>
-<span class="co">#&gt;  [9] "3-Personen-Haushalte"           "4- und Mehr-Personen-Haushalte"</span></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">df.HOUSING_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Haushalte insgesamt"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estimate 1"</span>, <span class="st">"Estimate 2"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.HOUSING_sub</span></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
-  <span class="fu">pivot_longer</span><span class="op">(</span>
-    cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
-    names_to <span class="op">=</span> <span class="st">"Year"</span>,
-    values_to <span class="op">=</span> <span class="st">"Rent"</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">Year</span>,
-  y <span class="op">=</span> <span class="va">Rent</span>,
-  colour <span class="op">=</span> <span class="va">KENNZIFFER</span>
-<span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2019</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>
-    colour <span class="op">=</span> <span class="cn">NULL</span>,
-    y <span class="op">=</span> <span class="st">"€ / m²"</span>,
-    title <span class="op">=</span> <span class="st">"Median rent in Leipzig"</span>,
-    subtitle <span class="op">=</span> <span class="st">"2000 to 2019"</span>,
-    caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></pre></div>
-<p><img src="reference/figures/README-housing-plot-1.png" width="100%"></p>
-</div>
-<div id="weather" class="section level3">
-<h3 class="hasAnchor">
-<a href="#weather" class="anchor"></a>Weather</h3>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">df.WEATHER</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_lis_geo.html">get_lis_geo</a></span><span class="op">(</span>rubrik_nr <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># weather</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df.WEATHER</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">EINHEIT</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 18</span>
-<span class="co">#&gt; Columns: 21</span>
-<span class="co">#&gt; $ KENNZIFFER &lt;chr&gt; "Lufttemperatur (Jahresmittel)", "Abweichung der Lufttempe…</span>
-<span class="co">#&gt; $ JAHR_2000  &lt;dbl&gt; 10.6, 1.8, 34.8, -12.5, 9.0, 36.0, 7.0, 46.0, 1771.0, 18.5…</span>
-<span class="co">#&gt; $ JAHR_2001  &lt;dbl&gt; 9.5, 0.7, 34.7, -11.5, 6.0, 35.0, 14.0, 84.0, 1576.0, 5.5,…</span>
-<span class="co">#&gt; $ JAHR_2002  &lt;dbl&gt; 9.8, 0.9, 34.0, -13.3, 8.0, 44.0, 17.0, 75.0, 1579.0, 5.7,…</span>
-<span class="co">#&gt; $ JAHR_2003  &lt;dbl&gt; 9.7, 0.8, 36.0, -20.5, 21.0, 65.0, 25.0, 107.0, 2086.0, 39…</span>
-<span class="co">#&gt; $ JAHR_2004  &lt;dbl&gt; 9.4, 0.6, 30.3, -15.9, 1.0, 30.0, 12.0, 93.0, 1676.0, 12.2…</span>
-<span class="co">#&gt; $ JAHR_2005  &lt;dbl&gt; 9.6, 0.8, 32.4, -11.7, 6.0, 45.0, 23.0, 89.0, 1823.0, 22.0…</span>
-<span class="co">#&gt; $ JAHR_2006  &lt;dbl&gt; 10.2, 1.4, 36.3, -15.3, 18.0, 60.0, 26.0, 83.0, 1899.0, 27…</span>
-<span class="co">#&gt; $ JAHR_2007  &lt;dbl&gt; 10.5, 1.7, 36.5, -9.1, 6.0, 44.0, 10.0, 52.0, 1827.0, 22.3…</span>
-<span class="co">#&gt; $ JAHR_2008  &lt;dbl&gt; 10.4, 1.6, 33.4, -8.9, 11.0, 41.0, 8.0, 63.0, 1691.0, 13.2…</span>
-<span class="co">#&gt; $ JAHR_2009  &lt;dbl&gt; 9.8, 1.0, 33.4, -21.8, 5.0, 45.0, 25.0, 78.0, 1735.0, 16.1…</span>
-<span class="co">#&gt; $ JAHR_2010  &lt;dbl&gt; 8.3, -0.5, 36.3, -16.4, 10.0, 39.0, 62.0, 106.0, 1686.0, 1…</span>
-<span class="co">#&gt; $ JAHR_2011  &lt;dbl&gt; 10.3, 1.5, 32.6, -13.4, 3.0, 44.0, 15.0, 73.0, 2043.0, 36.…</span>
-<span class="co">#&gt; $ JAHR_2012  &lt;dbl&gt; 9.9, 1.1, 37.2, -21.5, 10.0, 44.0, 25.0, 68.0, 1784.0, 19.…</span>
-<span class="co">#&gt; $ JAHR_2013  &lt;dbl&gt; 9.3, 0.5, 35.4, -15.3, 11.0, 41.0, 31.0, 95.0, 1573.0, 5.3…</span>
-<span class="co">#&gt; $ JAHR_2014  &lt;dbl&gt; 11.0, 2.2, 34.2, -12.2, 8.0, 37.0, 13.0, 48.0, 1780.0, 19.…</span>
-<span class="co">#&gt; $ JAHR_2015  &lt;dbl&gt; 10.8, 2.0, 37.0, -6.0, 21.0, 49.0, 4.0, 65.0, 1934.0, 29.5…</span>
-<span class="co">#&gt; $ JAHR_2016  &lt;dbl&gt; 10.4, 1.6, 35.4, -11.8, 15.0, 61.0, 9.0, 72.0, 1828.0, 22.…</span>
-<span class="co">#&gt; $ JAHR_2017  &lt;dbl&gt; 10.3, 1.5, 33.3, -10.8, 9.0, 47.0, 14.0, 117.0, 1722.0, 15…</span>
-<span class="co">#&gt; $ JAHR_2018  &lt;dbl&gt; 11.30000, 2.50000, 36.60000, -13.20000, 29.00000, 56.00000…</span>
-<span class="co">#&gt; $ JAHR_2019  &lt;dbl&gt; 11.2000, 2.5000, 38.3000, -9.9000, 25.0000, 42.0000, 6.000…</span>
-<span class="va">df</span><span class="op">$</span><span class="va">KENNZIFFER</span>
-<span class="co">#&gt;  [1] "Lufttemperatur (Jahresmittel)"                            </span>
-<span class="co">#&gt;  [2] "Abweichung der Lufttemperatur vom Normalwert (8,8°C)"     </span>
-<span class="co">#&gt;  [3] "Jahreshöchsttemperatur"                                   </span>
-<span class="co">#&gt;  [4] "Jahrestiefsttemperatur"                                   </span>
-<span class="co">#&gt;  [5] "30°C und wärmer (heiße Tage)"                             </span>
-<span class="co">#&gt;  [6] "25°C und wärmer (warme Tage)"                             </span>
-<span class="co">#&gt;  [7] "unter 0°C (Eistage)"                                      </span>
-<span class="co">#&gt;  [8] "unter 0°C (Frosttage)"                                    </span>
-<span class="co">#&gt;  [9] "Sonnenscheindauer (Jahressumme)"                          </span>
-<span class="co">#&gt; [10] "Abweichung der Sonnenscheindauer vom Normalwert (1 494 h)"</span>
-<span class="co">#&gt; [11] "Tage mit mindestens einer Stunde Sonnenschein"            </span>
-<span class="co">#&gt; [12] "Niederschlagshöhe (Jahressumme)"                          </span>
-<span class="co">#&gt; [13] "Abweichung der Niederschlagshöhe vom Normalwert (511 mm)" </span>
-<span class="co">#&gt; [14] "Maximale Tageshöhe der Niederschläge"                     </span>
-<span class="co">#&gt; [15] "Tage im Jahr mit Niederschlagshöhe von mindestens 0,1 mm" </span>
-<span class="co">#&gt; [16] "Tage im Jahr mit Niederschlagshöhe von mindestens 10 mm"  </span>
-<span class="co">#&gt; [17] "Jahresmittel der relativen Luftfeuchte"                   </span>
-<span class="co">#&gt; [18] "Maximale Windspitze"</span></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">df.WEATHER_sub</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Lufttemperatur (Jahresmittel)"</span> <span class="op">|</span>
-    <span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Niederschlagshöhe (Jahressumme)"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>KENNZIFFER <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>
-    <span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Lufttemperatur (Jahresmittel)"</span> <span class="op">~</span> <span class="st">"Temperature in °C (yearly mean)"</span>,
-    <span class="va">KENNZIFFER</span> <span class="op">==</span> <span class="st">"Niederschlagshöhe (Jahressumme)"</span> <span class="op">~</span> <span class="st">"Rain in l (yearly sum)"</span>,
-    <span class="cn">TRUE</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span>
-  <span class="op">)</span><span class="op">)</span>
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.WEATHER_sub</span></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">df.sub</span> <span class="op">&lt;-</span> <span class="va">df.sub</span> <span class="op">%&gt;%</span>
-  <span class="fu">pivot_longer</span><span class="op">(</span>
-    cols <span class="op">=</span> <span class="fu">starts_with</span><span class="op">(</span><span class="st">"JAHR"</span><span class="op">)</span>,
-    names_to <span class="op">=</span> <span class="st">"Year"</span>,
-    values_to <span class="op">=</span> <span class="st">"Value"</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>Year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_remove</span><span class="op">(</span><span class="va">Year</span>, <span class="st">"JAHR_"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df.sub</span>, <span class="fu">aes</span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">Year</span>,
-  y <span class="op">=</span> <span class="va">Value</span>
-<span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_step</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"red3"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2019</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">tidyquant</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tidyquant/man/theme_tq.html">theme_tq</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">KENNZIFFER</span>, nrow <span class="op">=</span> <span class="fl">2</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>
-    x <span class="op">=</span> <span class="cn">NULL</span>,
-    y <span class="op">=</span> <span class="cn">NULL</span>,
-    title <span class="op">=</span> <span class="st">"Temperature and rain in Leipzig"</span>,
-    subtitle <span class="op">=</span> <span class="st">"2000 to 2019"</span>,
-    caption <span class="op">=</span> <span class="st">"Source: Leipzig Informationssystem, 2020"</span>
-  <span class="op">)</span></pre></div>
-<p><img src="reference/figures/README-weather-plot-1.png" width="100%"></p>
+<p>See vignettes for details.</p>
 </div>
 </div>
-</div>
-<div id="map" class="section level1">
-<h1 class="hasAnchor">
-<a href="#map" class="anchor"></a>Map</h1>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="va">df.centres</span> <span class="op">&lt;-</span> <span class="va">df.DISTRICTS_LARGE</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span><span class="op">(</span>LON <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lon</span><span class="op">)</span>, 
-            LAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lat</span><span class="op">)</span><span class="op">)</span>
-
-
-
-<span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df.DISTRICTS_SMALL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_modern_rc</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">'Arial'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>
-    panel.grid.major <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-    panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-    axis.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,
-    axis.text.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_quickmap</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_polygon</span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span>, size <span class="op">=</span> <span class="fl">0.2</span>, color <span class="op">=</span> <span class="st">"#354C6A"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_polygon</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#004CFF"</span>, size <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="cn">NA</span>, data <span class="op">=</span> <span class="va">df.DISTRICTS_LARGE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Map of Leipzig"</span>,
-    x <span class="op">=</span> <span class="cn">NULL</span>,
-    y <span class="op">=</span> <span class="cn">NULL</span>,
-    caption <span class="op">=</span> <span class="st">"Boundaries of greater administrative and smaller local districts."</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">annotate</span><span class="op">(</span><span class="st">'text'</span>, x <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LON</span>, y <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">LAT</span>, label <span class="op">=</span> <span class="va">df.centres</span><span class="op">$</span><span class="va">group</span>,
-           colour <span class="op">=</span> <span class="st">'#E2E3E7'</span><span class="op">)</span></pre></div>
-<p><img src="reference/figures/README-map-1.png" width="100%"></p>
-</div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
