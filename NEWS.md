@@ -1,6 +1,8 @@
 # lisr 0.1.4
 
 * Added package vignettes.
+* Removed `df.DISTRICTS_LARGE` Boundaries of Leipzig's larger districts (Bezirke).
+* Removed `df.DISTRICTS_SMALL` Boundaries of Leipzig's smaller districts (Ortsteile).
 
 # lisr 0.1.3
 
