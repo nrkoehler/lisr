@@ -60,7 +60,8 @@ ggplot() +
 ```{r tmap}
 library(tmap)
 tmap_mode("view")
-tm_shape(df.OT) + tm_sf(alpha = 0, popup.vars = 'Name', id = 'Name', border.col = '#354C6A')
+tm_shape(df.OT) + 
+  tm_sf(alpha = 0, popup.vars = 'Name', id = 'Name', border.col = '#354C6A')
 
  
 ```
