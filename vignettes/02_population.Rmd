@@ -1,8 +1,8 @@
 ---
-title: "The population of Leipzig"
+title: "Population"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The population of Leipzig}
+  %\VignetteIndexEntry{Population}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,19 +21,38 @@ knitr::opts_chunk$set(
 )
 ```
 
+## R packages
+
+Für die folgenden Analysen werden zwei R Pakete benötigt:
+
 ```{r setup}
 library(lisr)
 library(tidyverse)
 ```
 
+## Data import
+
+Mit der `lisr::get_lis_pop()` Funktion werden die Bevölkerungsdaten eingelesen. Das Argument `rubrik_nr` kann die folgenden Werte annehmen:
+
+- 1 (Einwohner; Residents)
+- 2 (Einwohner nach Alter; Residents by age)
+- 3 (Wohnberechtigte Einwohner nach Alter; Residents entitled to live by age)
+
+Wir schauen uns im Folgenden die Anzahl der Einwohner über die letzten 20 Jahre an.
+
 ```{r pop-import}
-data <- get_lis_pop(rubrik_nr = 1) # inhabitants
+data <- get_lis_pop(rubrik_nr = 1) 
 ```
 
+## Data exploration
+
+Der importierte Datensatz enthält `r ncol(data)` Spalten und `r nrow(data)` Zeilen. Die Variablen haben die folgenden Namen:
 
 ```{r pop-variables}
 colnames(data)
 ```
+
+Da es sich bei den im Datensatz enthaltenen Angaben um Zähldaten handelt, ist die Angabe einer Einheit nicht sinnvoll. Folgerichtig enthält die Variable `EINHEIT` keine Werte und kann somit gelöscht werden.
 
 ```{r pop-unit}
 sum(!is.na(data$EINHEIT))
@@ -42,18 +61,26 @@ data <- data %>%
   select(-EINHEIT)
 ```
 
-
+Die Variable KENNZIFFER gibt die Bedeutung der im Datensatz enthaltenen Datenreihen wieder.
 
 ```{r pop-kennziffer}
 data$KENNZIFFER
-
 ```
+
+Leider sind die Angaben nicht eindeutig, sodass einige Nacharbeiten erforderlich sind.
+
+## Data wrangling
+
+Im folgenden Code-Block werden zwei neue Variablen erzeugt. 
+Die Variable `QUELLE` bezeichnet die Herkunft der Daten; die ersten neun Zeilen enthalten Angaben des "Statistischen Landesamtes Sachsen", die Zeilen 10 bis 18 geben die Anzahl der Einwohner mit Hauptwohnsitz und die Zeilen 19 bis 27 geben die Anzahl der Einwohner mit Haupt- oder Nebenwohnsitz wieder. Diese Angaben stammen vom Leipziger Melderegister.
+Die Variable `HERKUNFT` gibt an, ob sich die Zahlen auf Deutsche oder Ausländer beziehen. Abschließend werden die Angaben aus den Variablen `KENNZIFFER` und `HERKUNFT` in der Variable `KENNZIFFER` zusammengefasst. Die Variable `HERKUNFT` wird nun nicht mehr benötigt.
+
 
 ```{r pop-labels}
 data <- data %>% 
   mutate(QUELLE = c(rep('Statistisches Landesamtes Sachsen', 9), 
-          rep('Leipizger Melderegister', 9),
-          rep('Haupt- und Nebenwohnsitz', 9)),
+          rep('Leipizger Melderegister\n(Hauptwohnsitz)', 9),
+          rep('Leipizger Melderegister\n(Haupt- oder Nebenwohnsitz)', 9)),
          HERKUNFT = rep(c(rep('Gesamt', 3), 
                         rep('Deutsche', 3), 
                         rep('Ausländer', 3)), 3),
@@ -65,30 +92,30 @@ data <- data %>%
 ```
 
 
+Da uns zunächst nur die Angaben zur Gesamtbevölkerung interessieren, wird ein entsprechender Filter gesetzt. Mit der `tidyr::pivot_longer()` Funktion wird aus dem vorliegenden flachen ein tiefer Datensatz gemacht. Die Jahresangaben werden vom String "JAHR_" befreit und in das Format `numeric` umgewandelt.
+
 
 ```{r pop-filter}
-data.POP_sub <- data %>%
-  filter(KENNZIFFER == "Bevölkerung: Gesamt") %>%
-  mutate(KENNZIFFER = QUELLE)
-data.sub <- data.POP_sub
-```
-
-```{r pop-long}
-data.sub <- data.sub %>%
-  pivot_longer(
+data.sub <- data %>%
+  filter(KENNZIFFER == "Bevölkerung: Gesamt") %>% 
+    pivot_longer(
     cols = starts_with("JAHR"),
     names_to = "Year",
-    values_to = "Inhabitants"
+    values_to = "Residents"
   ) %>%
   mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
+
 ```
 
+Abschließend lassen sich die Daten mit dem `ggplot2`-Paket visualisieren. Betrachtet man nur die Einwohner mit Hauptwohnsitz, so wuchs deren Anzahl in den letzten 20 Jahren von etwa 480.000 auf etwa 600.000, was einer Zunahme um `r round(120/480*100)` Prozent entspricht.
+
+## Data visualisation
 
 ```{r pop-plot}
 ggplot(data.sub, aes(
   x = Year,
-  y = Inhabitants / 1000,
-  colour = KENNZIFFER
+  y = Residents / 1000,
+  colour = QUELLE
 )) +
   geom_line() +
   geom_point() +
@@ -98,9 +125,9 @@ ggplot(data.sub, aes(
   theme(legend.position = "bottom") +
   labs(
     colour = NULL,
-    y = "Inhabitants (1.000)",
+    y = "Residents (1.000)",
     title = "Population of Leipzig",
-    subtitle = "Number of inhabitants (2000 to 2019)",
+    subtitle = "Number of residents (2000 to 2019)",
     caption = "Source: Leipzig Informationssystem, 2020"
   )
 ```
