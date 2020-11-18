@@ -1,8 +1,8 @@
 ---
-title: "Maps of Leipzig"
+title: "Geographic maps"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Maps of Leipzig}
+  %\VignetteIndexEntry{Geographic maps}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -61,7 +61,10 @@ ggplot() +
 library(tmap)
 tmap_mode("view")
 tm_shape(df.OT) + 
-  tm_sf(alpha = 0, popup.vars = 'Name', id = 'Name', border.col = '#354C6A')
+  tm_sf(alpha = 0, 
+        popup.vars = 'Name', 
+        id = 'Name', 
+        border.col = '#354C6A')
 
  
 ```
