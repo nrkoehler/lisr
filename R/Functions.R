@@ -707,6 +707,12 @@ NULL
 #' @export
 get_lis_shapefile <- function(shape = "Ortsteile", ...) {
 
+  # check for right input
+  if (!shape %in% paste(c('Ortsteile', 'Bezirke'))) {
+    stop("Input must be either 'Ortsteile' or 'Bezirke'.
+         Please check for typos!")
+  }
+
   if (shape == "Ortsteile") x <- "Leipzig_Ortsteile_UTM33N.zip"
   if (shape == "Bezirke") x <- "Leipzig_Stadtbezirke_UTM33N.zip"
 
