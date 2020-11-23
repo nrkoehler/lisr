@@ -16,6 +16,12 @@
 #' @export
 get_lis_geo <- function(rubrik_nr = 1,
                         periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:3) {
+    stop("'rubrik_nr' must be between 1 and 3!")
+  }
+
   kategorie_nr <- 1
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -52,6 +58,12 @@ NULL
 #' @export
 get_lis_pop <- function(rubrik_nr = 1,
                         periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% c(1, 2, 5)) {
+    stop("'rubrik_nr' must be 1, 2 or 5!")
+  }
+
   kategorie_nr <- 2
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -90,6 +102,12 @@ NULL
 #' @export
 get_lis_move <- function(rubrik_nr = 1,
                              periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:5) {
+    stop("'rubrik_nr' must be between 1 and 5!")
+  }
+
   kategorie_nr <- 3
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -125,6 +143,12 @@ get_lis_move <- function(rubrik_nr = 1,
 #' @export
 get_lis_health <- function(rubrik_nr = 1,
                            periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% c(1, 2, 4)) {
+    stop("'rubrik_nr' must be 1, 2 or 4!")
+  }
+
   kategorie_nr <- 4
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -163,6 +187,13 @@ NULL
 #' @export
 get_lis_edu <- function(rubrik_nr = 1,
                         periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:5) {
+    stop("'rubrik_nr' must be between 1 and 5!")
+  }
+
+
   kategorie_nr <- 5
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -201,6 +232,12 @@ NULL
 #' @export
 get_lis_housing <- function(rubrik_nr = 1,
                             periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:5) {
+    stop("'rubrik_nr' must be between 1 and 5!")
+  }
+
   kategorie_nr <- 6
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -237,6 +274,12 @@ NULL
 #' @export
 get_lis_labour <- function(rubrik_nr = 1,
                            periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:3) {
+    stop("'rubrik_nr' must be between 1 and 3!")
+  }
+
   kategorie_nr <- 7
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -282,6 +325,12 @@ NULL
 #' @export
 get_lis_economy <- function(rubrik_nr = 1,
                             periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:12) {
+    stop("'rubrik_nr' must be between 1 and 12!")
+  }
+
   kategorie_nr <- 8
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -317,6 +366,12 @@ NULL
 #' @export
 get_lis_money <- function(rubrik_nr = 1,
                           periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:2) {
+    stop("'rubrik_nr' must be 1 or 2!")
+  }
+
   kategorie_nr <- 9
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -355,6 +410,12 @@ NULL
 #' @export
 get_lis_traffic <- function(rubrik_nr = 1,
                             periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:5) {
+    stop("'rubrik_nr' must be between 1 and 5!")
+  }
+
   kategorie_nr <- 10
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -395,6 +456,12 @@ NULL
 #' @export
 get_lis_culture <- function(rubrik_nr = 1,
                             periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:7) {
+    stop("'rubrik_nr' must be between 1 and 7!")
+  }
+
   kategorie_nr <- 11
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -431,6 +498,12 @@ NULL
 #' @export
 get_lis_environ <- function(rubrik_nr = 1,
                             periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% c(1, 3, 4)) {
+    stop("'rubrik_nr' must be 1, 3 or 4!")
+  }
+
   kategorie_nr <- 13
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -474,6 +547,12 @@ NULL
 #' @export
 get_lis_finances <- function(rubrik_nr = 1,
                              periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:10) {
+    stop("'rubrik_nr' must be between 1 and 10!")
+  }
+
   kategorie_nr <- 14
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -511,6 +590,12 @@ NULL
 #' @export
 get_lis_polls <- function(rubrik_nr = 1,
                           periode = "y") {
+
+  # check for right rubrik_nr
+  if (!rubrik_nr %in% 1:4) {
+    stop("'rubrik_nr' must be between 1 and 4!")
+  }
+
   kategorie_nr <- 15
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
@@ -549,6 +634,12 @@ NULL
 #' }
 #' @export
 get_lis_babynames <- function(year = 2014) {
+
+  # check for right year
+  if (!year %in% 2014:2019) {
+    stop("'year' must be between 2014 and 2019!")
+  }
+
   if (year == 2014) id <- "40c25656-03aa-4d86-b27f-79484effb51b"
   if (year == 2015) id <- "bf164ae8-70e1-4a0d-9984-02b7df4c241f"
   if (year == 2016) id <- "520344d3-1939-4405-9b97-3a85b50dd45b"
@@ -602,6 +693,12 @@ NULL
 #' }
 #' @export
 get_lis_kd <- function(kategorie_nr = 1) {
+
+  # check for right kategorie_nr
+  if (!kategorie_nr %in% c(1:10, 12)) {
+    stop("'kategorie_nr' must be either between 1 and 10 or 12!")
+  }
+
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/kdvalues?kategorie_nr=",
     kategorie_nr,
