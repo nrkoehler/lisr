@@ -7,10 +7,7 @@ reference:
     desc: "Functions for importing LIS data into R"
     contents:
     - starts_with("get_lis")
-  - title: "Data"
-    desc: "Additional data"
-    contents:
-    - starts_with("df.")
+
 
 
 
