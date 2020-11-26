@@ -32,12 +32,12 @@ remotes::install_github("nrkoehler/lisr")
 
 ## Documentation
 
-The package documentation can be found at [Github Pages](https://nrkoehler.github.io/lisr/).
+The package documentation can be found at [Github Pages](https://nrkoehler.github.io/lisr/). See vignettes for details.
 
 
-## Usage
 
-See vignettes for details.
+
+
 
 
 

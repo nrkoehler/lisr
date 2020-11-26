@@ -4,7 +4,6 @@
 # lisr <img src='man/figures/logo.png' align="right" height="150" />
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 R interface to `Leipzig Informationssystem`
@@ -19,8 +18,4 @@ remotes::install_github("nrkoehler/lisr")
 ## Documentation
 
 The package documentation can be found at [Github
-Pages](https://nrkoehler.github.io/lisr/).
-
-## Usage
-
-See vignettes for details.
+Pages](https://nrkoehler.github.io/lisr/). See vignettes for details.
