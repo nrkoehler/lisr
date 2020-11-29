@@ -1,0 +1,109 @@
+---
+title: "Babynames"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Babynames}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  tidy = 'styler',
+  fig.asp = 0.6,
+  fig.width = 8,
+  out.width = '100%',
+  comment = "#>"
+)
+```
+
+## R packages
+
+Für die folgenden Analysen werden zwei R Pakete benötigt:
+
+```{r setup}
+library(lisr)
+library(tidyverse)
+```
+
+## Data import
+
+```{r import}
+data <- map_df(2014:2019, get_lis_babynames) 
+```
+
+## Data exploration
+
+```{r variables}
+colnames(data)
+```
+
+## Data wrangling
+
+```{r wrangling}
+
+data <- data %>% 
+   rename(RANK = RANG)
+top.10_boys <- data %>%
+  filter(GESCHLECHT == 'm') %>%
+  filter(RANK <= 10) %>%
+  pull(VORNAME) %>%
+  unique()
+
+top.10_girls <- data %>%
+  filter(GESCHLECHT == 'w') %>%
+  filter(RANK <= 10) %>%
+  pull(VORNAME) %>%
+  unique()
+
+
+df.top.10_boys <- data %>%
+  filter(GESCHLECHT == 'm') %>%
+  filter(VORNAME %in% top.10_boys) %>%
+  select(-GESCHLECHT, -RANG_GESAMT)
+
+df.top.10_girls <- data %>%
+  filter(GESCHLECHT == 'w') %>%
+  filter(VORNAME %in% top.10_girls) %>%
+  select(-GESCHLECHT, -RANG_GESAMT)
+```
+
+
+## Data visualisation
+
+```{r boys-top-10}
+ggplot(df.top.10_boys,
+       aes(x = YEAR, y = RANK, colour = VORNAME)) +
+  scale_y_reverse(breaks = seq(1, 10, 1), limits = c(10, 1)) +
+   geom_line(aes(group = VORNAME), linetype = 3) +
+  geom_label(aes(label = VORNAME), fill = "#1e1e1e", hjust = 'center') +
+  hrbrthemes::theme_modern_rc() +
+  theme(legend.position = 'none',
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  expand_limits(x = c(2013.8, 2019.1)) +
+  ggsci::scale_color_d3("category20") +
+  labs(title = 'Most popular male babynames',
+       subtitle = '2014 - 2019')
+
+```
+
+```{r girls-top-10}
+ggplot(df.top.10_girls,
+       aes(x = YEAR, y = RANK, colour = VORNAME)) +
+  scale_y_reverse(breaks = seq(1, 10, 1), limits = c(10, 1)) +
+  geom_line(aes(group = VORNAME), linetype = 3) +
+  geom_label(aes(label = VORNAME), fill = "#1e1e1e") +
+  hrbrthemes::theme_modern_rc() +
+  theme(legend.position = 'none',
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  expand_limits(x = c(2013.8, 2019.1)) +
+  ggsci::scale_color_d3("category20") +
+    labs(title = 'Most popular female babynames',
+       subtitle = '2014 - 2019')
+```
