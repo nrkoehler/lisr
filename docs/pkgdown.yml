@@ -1,11 +1,11 @@
-pandoc: 2.9.2.1
+pandoc: 2.11.2
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  01_maps: 01_maps.html
-  02_population: 02_population.html
-  03_housing: 03_housing.html
-  04_weather: 04_weather.html
-  05-babynames: 05-babynames.html
-last_built: 2020-11-29T09:19Z
+  v01_maps: v01_maps.html
+  v02_population: v02_population.html
+  v03_housing: v03_housing.html
+  v04_weather: v04_weather.html
+  v05-babynames: v05-babynames.html
+last_built: 2020-12-02T11:26Z
 
