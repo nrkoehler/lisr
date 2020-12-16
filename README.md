@@ -4,6 +4,8 @@
 # lisr <img src='man/figures/logo.png' align="right" height="150" />
 
 <!-- badges: start -->
+
+[![](https://img.shields.io/badge/devel%20version-0.1.4-blue.svg)](https://github.com/nrkoehler/lisr)
 <!-- badges: end -->
 
 R interface to `Leipzig Informationssystem`
