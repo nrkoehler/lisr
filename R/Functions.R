@@ -615,13 +615,13 @@ get_lis_polls <- function(rubrik_nr = 1,
 }
 NULL
 #' @title {Vornamen (Babynames)}
-#' @description {Leipzig's babynames between 2014 and 2019}
-#' @param year Number (2014 to 2019)
+#' @description {Leipzig's babynames between 2014 and 2020}
+#' @param year Number (2014 to 2020)
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
 #' @examples
 #' \dontrun{
-#' get_lis_babynames(year = 2014)
+#' get_lis_babynames(year = 2020)
 #' }
 #' @return Data frame with 6 columns
 #' \itemize{
@@ -633,11 +633,11 @@ NULL
 #' \item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 #' }
 #' @export
-get_lis_babynames <- function(year = 2014) {
+get_lis_babynames <- function(year = 2020) {
 
   # check for right year
-  if (!year %in% 2014:2019) {
-    stop("'year' must be between 2014 and 2019!")
+  if (!year %in% 2014:2020) {
+    stop("'year' must be between 2014 and 2020!")
   }
 
   if (year == 2014) id <- "40c25656-03aa-4d86-b27f-79484effb51b"
@@ -646,6 +646,8 @@ get_lis_babynames <- function(year = 2014) {
   if (year == 2017) id <- "468d1bd1-26df-4ac5-a908-7dd586849236"
   if (year == 2018) id <- "1b2c8423-4b95-4490-b6de-ae69e3e33484"
   if (year == 2019) id <- "680183af-ecdd-4670-9357-3038cf5efd7e"
+  if (year == 2020) id <- "52b3ef26-1c2c-41db-8d4f-800fda635df5"
+
   dataset <- "c62e543b-a558-4fed-a5cb-973ba8dc787d"
   url <- paste0(
     "https://opendata.leipzig.de/dataset/",

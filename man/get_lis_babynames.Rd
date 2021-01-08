@@ -4,10 +4,10 @@
 \alias{get_lis_babynames}
 \title{{Vornamen (Babynames)}}
 \usage{
-get_lis_babynames(year = 2014)
+get_lis_babynames(year = 2020)
 }
 \arguments{
-\item{year}{Number (2014 to 2019)}
+\item{year}{Number (2014 to 2020)}
 }
 \value{
 Data frame with 6 columns
@@ -21,11 +21,11 @@ Data frame with 6 columns
 }
 }
 \description{
-{Leipzig's babynames between 2014 and 2019}
+{Leipzig's babynames between 2014 and 2020}
 }
 \examples{
 \dontrun{
-get_lis_babynames(year = 2014)
+get_lis_babynames(year = 2020)
 }
 }
 \references{
