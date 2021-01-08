@@ -122,7 +122,7 @@ datatable(tab,
              autoWidth = TRUE,
             columnDefs = list(list(className = 'dt-center', 
                                    width = '200px',
-                                   targets = 0:5))
+                                   targets = "_all"))
             ),
           colnames = c('Year', 'Sex', 'Name', 'Number', 'Rank (Sex)', 'Rank (Total)'),
           filter = 'top')
