@@ -107,3 +107,15 @@ ggplot(df.top.10_girls,
     labs(title = 'Most popular female babynames',
        subtitle = '2014 - 2019')
 ```
+
+
+```{r tab-names}
+library(DT)
+tab <- data %>% 
+  select(Year = YEAR, Name = VORNAME, Number = ANZAHL, Rank_Sex = RANK, Rank_Total = RANG_GESAMT) %>%   arrange(Year, Rank_Total) %>% 
+  filter(Number > 1)
+datatable(tab,
+          colnames = c('Year', 'Name', 'Number', 'Rank (Sex)', 'Rank (Total)'),
+          filter = 'top')
+```
+
