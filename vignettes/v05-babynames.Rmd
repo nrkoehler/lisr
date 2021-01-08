@@ -119,7 +119,10 @@ tab <- data %>%
 datatable(tab,
           rownames = FALSE,
           options = list(
-            columnDefs = list(list(className = 'dt-center', targets = 0:5))
+             autoWidth = TRUE,
+            columnDefs = list(list(className = 'dt-center', 
+                                   width = '200px',
+                                   targets = 0:5))
             ),
           colnames = c('Year', 'Sex', 'Name', 'Number', 'Rank (Sex)', 'Rank (Total)'),
           filter = 'top')
