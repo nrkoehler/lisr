@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lisr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,7 +84,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/nrkoehler/lisr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -98,7 +98,7 @@
 
       
 
-      </header><script src="v02_population_files/header-attrs-2.3/header-attrs.js"></script><script src="v02_population_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="v02_population_files/header-attrs-2.6/header-attrs.js"></script><script src="v02_population_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Population</h1>
@@ -135,14 +135,14 @@
 <div id="data-exploration" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-exploration" class="anchor"></a>Data exploration</h2>
-<p>Der importierte Datensatz enthält 22 Spalten und 27 Zeilen. Die Variablen haben die folgenden Namen:</p>
+<p>Der importierte Datensatz enthält 23 Spalten und 27 Zeilen. Die Variablen haben die folgenden Namen:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "KENNZIFFER" "EINHEIT"    "JAHR_2000"  "JAHR_2001"  "JAHR_2002" </span>
 <span class="co">#&gt;  [6] "JAHR_2003"  "JAHR_2004"  "JAHR_2005"  "JAHR_2006"  "JAHR_2007" </span>
 <span class="co">#&gt; [11] "JAHR_2008"  "JAHR_2009"  "JAHR_2010"  "JAHR_2011"  "JAHR_2012" </span>
 <span class="co">#&gt; [16] "JAHR_2013"  "JAHR_2014"  "JAHR_2015"  "JAHR_2016"  "JAHR_2017" </span>
-<span class="co">#&gt; [21] "JAHR_2018"  "JAHR_2019"</span></pre></div>
+<span class="co">#&gt; [21] "JAHR_2018"  "JAHR_2019"  "JAHR_2020"</span></pre></div>
 <p>Da es sich bei den im Datensatz enthaltenen Angaben um Zähldaten handelt, ist die Angabe einer Einheit nicht sinnvoll. Folgerichtig enthält die Variable <code>EINHEIT</code> keine Werte und kann somit gelöscht werden.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">EINHEIT</span><span class="op">)</span><span class="op">)</span>
