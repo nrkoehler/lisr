@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/badge/devel%20version-0.1.4-blue.svg)](https://github.com/nrkoehler/lisr)
+[![](https://img.shields.io/badge/devel%20version-0.1.5-blue.svg)](https://github.com/nrkoehler/lisr)
 <!-- badges: end -->
 
 R interface to `Leipzig Informationssystem`
