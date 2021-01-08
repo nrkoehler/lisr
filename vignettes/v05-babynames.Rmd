@@ -112,7 +112,9 @@ ggplot(df.top.10_girls,
 ```{r tab-names}
 library(DT)
 tab <- data %>% 
-  mutate(GESCHLECHT = ifelse(GESCHLECHT == 'w', 'female', 'male')) %>% 
+  mutate(GESCHLECHT = ifelse(GESCHLECHT == 'w', 'female', 'male'),
+         GESCHLECHT = factor(GESCHLECHT, levels = c('female', 'male')),
+         YEAR = as.factor(YEAR)) %>% 
   select(Year = YEAR, Geschlecht = GESCHLECHT, Name = VORNAME, Number = ANZAHL, Rank_Sex = RANK, Rank_Total = RANG_GESAMT) %>%   arrange(Year, Rank_Total) 
 datatable(tab,
           rownames = FALSE,
