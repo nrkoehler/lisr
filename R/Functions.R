@@ -656,11 +656,12 @@ get_lis_babynames <- function(year = 2020) {
     year, ".csv"
   )
 
+  separator <- ifelse(year < 2020, ',', ';')
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  df.f <- data[c("Rang", "Anzahl", "Vorname", "Geschlecht")]
-  df.m <- data[c("Rang.1", "Anzahl.1", "Vorname.1", "Geschlecht.1")]
+  data <- read.delim(tmpFile, sep = separator, dec = ",", fileEncoding = 'utf-8')
+  df.f <- data[1:4]
+  df.m <- data[6:9]
   colnames(df.m) <- colnames(df.f)
   data <- rbind(df.f, df.m)
   data <- na.omit(data)
@@ -668,7 +669,7 @@ get_lis_babynames <- function(year = 2020) {
   colnames(data) <- toupper(colnames(data))
   data$RANG_GESAMT <- rank(-data$ANZAHL, ties.method = "max")
   data <- data[order(data$RANG_GESAMT), ]
-  data
+  data <- subset(data, GESCHLECHT %in% c('w', 'm'))
 }
 NULL
 #' @title {Kleinraeumige Daten (Leipzig's districts)}

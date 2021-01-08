@@ -33,7 +33,7 @@ library(tidyverse)
 ## Data import
 
 ```{r import}
-data <- map_df(2014:2019, get_lis_babynames) 
+data <- map_df(2014:2020, get_lis_babynames) 
 ```
 
 ## Data exploration
@@ -79,16 +79,16 @@ df.top.10_girls <- data %>%
 ggplot(df.top.10_boys,
        aes(x = YEAR, y = RANK, colour = VORNAME)) +
   scale_y_reverse(breaks = seq(1, 10, 1), limits = c(10, 1)) +
-   geom_line(aes(group = VORNAME), linetype = 3) +
+  scale_x_continuous(breaks = seq(2014, 2020, 1)) +
+  geom_line(aes(group = VORNAME), linetype = 3) +
   geom_label(aes(label = VORNAME), fill = "#1e1e1e", hjust = 'center') +
   hrbrthemes::theme_modern_rc() +
   theme(legend.position = 'none',
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
-  expand_limits(x = c(2013.8, 2019.1)) +
-  ggsci::scale_color_d3("category20") +
+  expand_limits(x = c(2013.8, 2020.1)) +
   labs(title = 'Most popular male babynames',
-       subtitle = '2014 - 2019')
+       subtitle = 'Leipzig, Germany')
 
 ```
 
@@ -96,26 +96,30 @@ ggplot(df.top.10_boys,
 ggplot(df.top.10_girls,
        aes(x = YEAR, y = RANK, colour = VORNAME)) +
   scale_y_reverse(breaks = seq(1, 10, 1), limits = c(10, 1)) +
+  scale_x_continuous(breaks = seq(2014, 2020, 1)) +
   geom_line(aes(group = VORNAME), linetype = 3) +
   geom_label(aes(label = VORNAME), fill = "#1e1e1e") +
   hrbrthemes::theme_modern_rc() +
   theme(legend.position = 'none',
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
-  expand_limits(x = c(2013.8, 2019.1)) +
-  ggsci::scale_color_d3("category20") +
+  expand_limits(x = c(2013.8, 2020.1)) +
     labs(title = 'Most popular female babynames',
-       subtitle = '2014 - 2019')
+       subtitle = 'Leipzig, Germany')
 ```
 
 
 ```{r tab-names}
 library(DT)
 tab <- data %>% 
-  select(Year = YEAR, Name = VORNAME, Number = ANZAHL, Rank_Sex = RANK, Rank_Total = RANG_GESAMT) %>%   arrange(Year, Rank_Total) %>% 
-  filter(Number > 1)
+  mutate(GESCHLECHT = ifelse(GESCHLECHT == 'w', 'female', 'male')) %>% 
+  select(Year = YEAR, Geschlecht = GESCHLECHT, Name = VORNAME, Number = ANZAHL, Rank_Sex = RANK, Rank_Total = RANG_GESAMT) %>%   arrange(Year, Rank_Total) 
 datatable(tab,
-          colnames = c('Year', 'Name', 'Number', 'Rank (Sex)', 'Rank (Total)'),
+          rownames = FALSE,
+          options = list(
+            columnDefs = list(list(className = 'dt-center', targets = 0:5))
+            ),
+          colnames = c('Year', 'Sex', 'Name', 'Number', 'Rank (Sex)', 'Rank (Total)'),
           filter = 'top')
 ```
 
