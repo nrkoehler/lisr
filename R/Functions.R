@@ -76,11 +76,17 @@ get_lis_pop <- function(rubrik_nr = 1,
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
+  data <- read.csv(tmpFile, dec = ",", fileEncoding = "utf-8")
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
+                        substr(colnames(data), 5, 6)), colnames(data))
+  }
   data
 }
+
 NULL
 #' @title {Bevoelkerungsbewegung (Population movement)}
 #' @description {Get data from LIS about population movement}
