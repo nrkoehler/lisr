@@ -1,12 +1,12 @@
 #' @title {Stadtgebiet und Witterung (Administrative area and weather)}
 #' @description {Get data from LIS about geography and weather}
+#' @note {Only yearly data are available}
 #' @param rubrik_nr Number (1 to 3)
 #' \itemize{
 #' \item {1 = Geographische Lage}
 #' \item {2 = Flaeche und Nutzungsarten}
 #' \item {3 = Wetterdaten}
 #' }
-#' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
 #' @examples
@@ -14,8 +14,7 @@
 #' get_lis_geo(rubrik_nr = 1)
 #' }
 #' @export
-get_lis_geo <- function(rubrik_nr = 1,
-                        periode = "y") {
+get_lis_geo <- function(rubrik_nr = 1) {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% 1:3) {
@@ -23,6 +22,7 @@ get_lis_geo <- function(rubrik_nr = 1,
   }
 
   kategorie_nr <- 1
+  periode = "y"
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
     kategorie_nr,
