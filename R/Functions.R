@@ -746,7 +746,8 @@ get_lis_trees <- function(...) {
   )
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", sep = ';', fileEncoding = 'utf-8')
+  data <- read.delim(tmpFile, sep = ";", comment.char="#",
+                     fileEncoding = 'WINDOWS-1252')
   data$SHAPE <- NULL
   colnames(data) <- toupper(colnames(data))
   data$STANDORTNUMMER <- as.character(data$STANDORTNUMMER)
