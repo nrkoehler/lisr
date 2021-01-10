@@ -94,7 +94,7 @@ NULL
 #' \itemize{
 #' \item {1 = Geborene und Gestorbene (Amtliche Daten)}
 #' \item {2 = Geborene und Gestorbene (Melderegisterdaten)}
-#' \item {3 = Eheschliessungen und Ehescheidungen}
+#' \item {3 = Eheschliessungen und Ehescheidungen (yearly data only)}
 #' \item {4 = Wanderungen (Amtliche Daten)}
 #' \item {5 = Wanderungen (Melderegisterdaten)}
 #' }
@@ -107,7 +107,7 @@ NULL
 #' }
 #' @export
 get_lis_move <- function(rubrik_nr = 1,
-                             periode = "y") {
+                          periode = "y") {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% 1:5) {
@@ -128,7 +128,12 @@ get_lis_move <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 #' @title {Gesundheit und Soziales (Public health and social affairs)}
