@@ -10,7 +10,7 @@ get_lis_labour(rubrik_nr = 1, periode = "y")
 \item{rubrik_nr}{Number (1 to 3)
 \itemize{
 \item {1 = Beschaeftigte}
-\item {2 = Auszubildende}
+\item {2 = Auszubildende (yearly data only)}
 \item {3 = Arbeitslose}
 }}
 

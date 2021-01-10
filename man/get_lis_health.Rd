@@ -9,8 +9,8 @@ get_lis_health(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1, 2, 4)
 \itemize{
-\item {1 = Kindertageseinrichtungen}
-\item {2 = Tagespflege}
+\item {1 = Kindertageseinrichtungen (yearly data only)}
+\item {2 = Tagespflege (yearly data only)}
 \item {4 = Grundsicherung für Arbeitssuchende}
 }}
 

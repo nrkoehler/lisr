@@ -4,7 +4,7 @@
 \alias{get_lis_edu}
 \title{{Bildung (Education)}}
 \usage{
-get_lis_edu(rubrik_nr = 1, periode = "y")
+get_lis_edu(rubrik_nr = 1)
 }
 \arguments{
 \item{rubrik_nr}{Number (1 to 5)
@@ -15,11 +15,12 @@ get_lis_edu(rubrik_nr = 1, periode = "y")
 \item {4 = Hochschulen}
 \item {5 = Volkshochschulen}
 }}
-
-\item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
 {Get data from LIS about education}
+}
+\note{
+{Only yearly data are available}
 }
 \examples{
 \dontrun{

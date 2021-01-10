@@ -9,11 +9,11 @@ get_lis_housing(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1 to 5)
 \itemize{
-\item {1 = Wohnungsbestand}
-\item {2 = Wohnsituation}
-\item {3 = Wohnungsmieten}
+\item {1 = Wohnungsbestand (yearly data only)}
+\item {2 = Wohnsituation (yearly data only)}
+\item {3 = Wohnungsmieten (yearly data only)}
 \item {4 = Baugenehmigungen}
-\item {5 = Baufertigstellungen}
+\item {5 = Baufertigstellungen (yearly data only)}
 }}
 
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}

@@ -4,7 +4,7 @@
 \alias{get_lis_polls}
 \title{{Wahlen (Polls)}}
 \usage{
-get_lis_polls(rubrik_nr = 1, periode = "y")
+get_lis_polls(rubrik_nr = 1)
 }
 \arguments{
 \item{rubrik_nr}{Number (1 to 4)

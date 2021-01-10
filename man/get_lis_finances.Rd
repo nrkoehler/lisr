@@ -9,16 +9,16 @@ get_lis_finances(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1 to 10)
 \itemize{
-\item {1 = Personal nach Aufgabenbereichen}
-\item {2 = Personal nach Produktbereichen}
-\item {3 = Personal nach Dienstverhaeltnissen}
-\item {4 = Einnahmen}
-\item {5 = Ausgaben}
+\item {1 = Personal nach Aufgabenbereichen (yearly data only)}
+\item {2 = Personal nach Produktbereichen (yearly data only)}
+\item {3 = Personal nach Dienstverhaeltnissen (yearly data only)}
+\item {4 = Einnahmen (yearly data only)}
+\item {5 = Ausgaben (yearly data only)}
 \item {6 = Steuereinnahmen}
-\item {7 = Realsteuervergleich}
-\item {8 = Zufriedenheit mit den Lebensbedingungen}
-\item {9 = Einsatz von Haushaltsmitteln}
-\item {10 = Probleme aus Buergersicht}
+\item {7 = Realsteuervergleich (yearly data only)}
+\item {8 = Zufriedenheit mit den Lebensbedingungen (yearly data only)}
+\item {9 = Einsatz von Haushaltsmitteln (yearly data only)}
+\item {10 = Probleme aus Buergersicht (yearly data only)}
 }}
 
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}

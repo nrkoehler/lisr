@@ -11,11 +11,11 @@ get_lis_culture(rubrik_nr = 1, periode = "y")
 \itemize{
 \item {1 = Museen}
 \item {2 = Theater}
-\item {3 = Bibliotheken}
+\item {3 = Bibliotheken (yearly data only)}
 \item {4 = Zoo Leipzig}
 \item {5 = Baeder}
-\item {6 = Sportvereine}
-\item {7 = Sporteinrichtungen}
+\item {6 = Sportvereine (yearly data only)}
+\item {7 = Sporteinrichtungen (yearly data only)}
 }}
 
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}

@@ -4,7 +4,7 @@
 \alias{get_lis_geo}
 \title{{Stadtgebiet und Witterung (Administrative area and weather)}}
 \usage{
-get_lis_geo(rubrik_nr = 1, periode = "y")
+get_lis_geo(rubrik_nr = 1)
 }
 \arguments{
 \item{rubrik_nr}{Number (1 to 3)
@@ -13,11 +13,12 @@ get_lis_geo(rubrik_nr = 1, periode = "y")
 \item {2 = Flaeche und Nutzungsarten}
 \item {3 = Wetterdaten}
 }}
-
-\item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
 {Get data from LIS about geography and weather}
+}
+\note{
+{Only yearly data are available}
 }
 \examples{
 \dontrun{

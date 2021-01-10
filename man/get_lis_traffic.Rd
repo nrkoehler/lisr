@@ -9,10 +9,10 @@ get_lis_traffic(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1 to 5)
 \itemize{
-\item {1 = Strassennetz}
-\item {2 = Kraftfahrzeugbestand}
+\item {1 = Strassennetz (yearly data only)}
+\item {2 = Kraftfahrzeugbestand (yearly data only)}
 \item {3 = Verkehrsunfaelle}
-\item {4 = Personennahverkehr}
+\item {4 = Personennahverkehr (yearly data only)}
 \item {5 = Luftverkehr}
 }}
 

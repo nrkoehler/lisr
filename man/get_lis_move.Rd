@@ -11,7 +11,7 @@ get_lis_move(rubrik_nr = 1, periode = "y")
 \itemize{
 \item {1 = Geborene und Gestorbene (Amtliche Daten)}
 \item {2 = Geborene und Gestorbene (Melderegisterdaten)}
-\item {3 = Eheschliessungen und Ehescheidungen}
+\item {3 = Eheschliessungen und Ehescheidungen (yearly data only)}
 \item {4 = Wanderungen (Amtliche Daten)}
 \item {5 = Wanderungen (Melderegisterdaten)}
 }}

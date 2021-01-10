@@ -4,7 +4,7 @@
 \alias{get_lis_money}
 \title{{Einkommen und Preise (Income and prices)}}
 \usage{
-get_lis_money(rubrik_nr = 1, periode = "y")
+get_lis_money(rubrik_nr = 1)
 }
 \arguments{
 \item{rubrik_nr}{Number (1 to 2)
@@ -12,11 +12,12 @@ get_lis_money(rubrik_nr = 1, periode = "y")
 \item {1 = Lebensunterhalt}
 \item {2 = Nettoeinkommen}
 }}
-
-\item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
 {Get data from LIS about income and prices}
+}
+\note{
+{Only yearly data are available}
 }
 \examples{
 \dontrun{

@@ -4,7 +4,7 @@
 \alias{get_lis_environ}
 \title{{Energie und Umwelt (Energy and environment)}}
 \usage{
-get_lis_environ(rubrik_nr = 1, periode = "y")
+get_lis_environ(rubrik_nr = 1)
 }
 \arguments{
 \item{rubrik_nr}{Number (1, 3, 4)
@@ -13,11 +13,12 @@ get_lis_environ(rubrik_nr = 1, periode = "y")
 \item {3 = Wasserhygiene}
 \item {4 = Energieverbrauch}
 }}
-
-\item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
 {Get data from LIS about energy and environment}
+}
+\note{
+{Only yearly data are available}
 }
 \examples{
 \dontrun{

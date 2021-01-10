@@ -9,18 +9,18 @@ get_lis_economy(rubrik_nr = 1, periode = "y")
 \arguments{
 \item{rubrik_nr}{Number (1 to 12)
 \itemize{
-\item {1 = Unternehmen}
-\item {2 = Handwerksbetriebe}
+\item {1 = Unternehmen (yearly data only)}
+\item {2 = Handwerksbetriebe (yearly data only)}
 \item {3 = Verarbeitendes Gewerbe}
 \item {4 = Bauhauptgewerbe}
 \item {5 = Ausbaugewerbe}
-\item {6 = Gewerbemeldungen}
-\item {7 = Insolvenzverfahren}
-\item {8 = Beherbergungskapazitaet}
+\item {6 = Gewerbemeldungen (yearly data only)}
+\item {7 = Insolvenzverfahren (yearly data only)}
+\item {8 = Beherbergungskapazitaet (yearly data only)}
 \item {9 = Ankuenfte und Uebernachtungen}
-\item {10 = Gaeste nach Herkunftslaendern}
-\item {11 = Messen und Ausstellungen}
-\item {12 = Bruttoinlandsprodukt und Bruttowertschoepfung}
+\item {10 = Gaeste nach Herkunftslaendern (yearly data only)}
+\item {11 = Messen und Ausstellungen (yearly data only)}
+\item {12 = Bruttoinlandsprodukt und Bruttowertschoepfung (yearly data only)}
 }}
 
 \item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
