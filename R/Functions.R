@@ -140,8 +140,8 @@ get_lis_move <- function(rubrik_nr = 1,
 #' @description {Get data from LIS about public health and social affairs}
 #' @param rubrik_nr Number (1, 2, 4)
 #' \itemize{
-#' \item {1 = Kindertageseinrichtungen}
-#' \item {2 = Tagespflege}
+#' \item {1 = Kindertageseinrichtungen (yearly data only)}
+#' \item {2 = Tagespflege (yearly data only)}
 #' \item {4 = Grundsicherung für Arbeitssuchende}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
@@ -174,12 +174,18 @@ get_lis_health <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
+                                                                     substr(colnames(data), 5, 6)), colnames(data))
+  }
   data
 }
 NULL
 #' @title {Bildung (Education)}
 #' @description {Get data from LIS about education}
+#' @note {Only yearly data are available}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
 #' \item {1 = Allgemeinbildende Schulen}
@@ -188,7 +194,6 @@ NULL
 #' \item {4 = Hochschulen}
 #' \item {5 = Volkshochschulen}
 #' }
-#' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
 #' @examples
@@ -196,8 +201,7 @@ NULL
 #' get_lis_edu(rubrik_nr = 1)
 #' }
 #' @export
-get_lis_edu <- function(rubrik_nr = 1,
-                        periode = "y") {
+get_lis_edu <- function(rubrik_nr = 1) {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% 1:5) {
@@ -206,6 +210,7 @@ get_lis_edu <- function(rubrik_nr = 1,
 
 
   kategorie_nr <- 5
+  periode <- "y"
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
     kategorie_nr,
@@ -227,11 +232,11 @@ NULL
 #' @description {Get data from LIS about building activity and housing}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
-#' \item {1 = Wohnungsbestand}
-#' \item {2 = Wohnsituation}
-#' \item {3 = Wohnungsmieten}
+#' \item {1 = Wohnungsbestand (yearly data only)}
+#' \item {2 = Wohnsituation (yearly data only)}
+#' \item {3 = Wohnungsmieten (yearly data only)}
 #' \item {4 = Baugenehmigungen}
-#' \item {5 = Baufertigstellungen}
+#' \item {5 = Baufertigstellungen (yearly data only)}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
@@ -263,7 +268,12 @@ get_lis_housing <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 NULL
@@ -272,7 +282,7 @@ NULL
 #' @param rubrik_nr Number (1 to 3)
 #' \itemize{
 #' \item {1 = Beschaeftigte}
-#' \item {2 = Auszubildende}
+#' \item {2 = Auszubildende (yearly data only)}
 #' \item {3 = Arbeitslose}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
@@ -305,7 +315,12 @@ get_lis_labour <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
+                                                                     substr(colnames(data), 5, 6)), colnames(data))
+  }
   data
 }
 NULL
@@ -313,18 +328,18 @@ NULL
 #' @description {Get data from LIS about economy}
 #' @param rubrik_nr Number (1 to 12)
 #' \itemize{
-#' \item {1 = Unternehmen}
-#' \item {2 = Handwerksbetriebe}
+#' \item {1 = Unternehmen (yearly data only)}
+#' \item {2 = Handwerksbetriebe (yearly data only)}
 #' \item {3 = Verarbeitendes Gewerbe}
 #' \item {4 = Bauhauptgewerbe}
 #' \item {5 = Ausbaugewerbe}
-#' \item {6 = Gewerbemeldungen}
-#' \item {7 = Insolvenzverfahren}
-#' \item {8 = Beherbergungskapazitaet}
+#' \item {6 = Gewerbemeldungen (yearly data only)}
+#' \item {7 = Insolvenzverfahren (yearly data only)}
+#' \item {8 = Beherbergungskapazitaet (yearly data only)}
 #' \item {9 = Ankuenfte und Uebernachtungen}
-#' \item {10 = Gaeste nach Herkunftslaendern}
-#' \item {11 = Messen und Ausstellungen}
-#' \item {12 = Bruttoinlandsprodukt und Bruttowertschoepfung}
+#' \item {10 = Gaeste nach Herkunftslaendern (yearly data only)}
+#' \item {11 = Messen und Ausstellungen (yearly data only)}
+#' \item {12 = Bruttoinlandsprodukt und Bruttowertschoepfung (yearly data only)}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
@@ -356,18 +371,23 @@ get_lis_economy <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 NULL
 #' @title {Einkommen und Preise (Income and prices)}
 #' @description {Get data from LIS about income and prices}
+#' @note {Only yearly data are available}
 #' @param rubrik_nr Number (1 to 2)
 #' \itemize{
 #' \item {1 = Lebensunterhalt}
 #' \item {2 = Nettoeinkommen}
 #' }
-#' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
 #' @examples
@@ -375,8 +395,7 @@ NULL
 #' get_lis_money(rubrik_nr = 1)
 #' }
 #' @export
-get_lis_money <- function(rubrik_nr = 1,
-                          periode = "y") {
+get_lis_money <- function(rubrik_nr = 1) {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% 1:2) {
@@ -384,6 +403,7 @@ get_lis_money <- function(rubrik_nr = 1,
   }
 
   kategorie_nr <- 9
+  periode <- "y"
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
     kategorie_nr,
@@ -405,10 +425,10 @@ NULL
 #' @description {Get data from LIS about traffic and public transport}
 #' @param rubrik_nr Number (1 to 5)
 #' \itemize{
-#' \item {1 = Strassennetz}
-#' \item {2 = Kraftfahrzeugbestand}
+#' \item {1 = Strassennetz (yearly data only)}
+#' \item {2 = Kraftfahrzeugbestand (yearly data only)}
 #' \item {3 = Verkehrsunfaelle}
-#' \item {4 = Personennahverkehr}
+#' \item {4 = Personennahverkehr (yearly data only)}
 #' \item {5 = Luftverkehr}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
@@ -441,7 +461,12 @@ get_lis_traffic <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 NULL
@@ -451,11 +476,11 @@ NULL
 #' \itemize{
 #' \item {1 = Museen}
 #' \item {2 = Theater}
-#' \item {3 = Bibliotheken}
+#' \item {3 = Bibliotheken (yearly data only)}
 #' \item {4 = Zoo Leipzig}
 #' \item {5 = Baeder}
-#' \item {6 = Sportvereine}
-#' \item {7 = Sporteinrichtungen}
+#' \item {6 = Sportvereine (yearly data only)}
+#' \item {7 = Sporteinrichtungen (yearly data only)}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
@@ -487,19 +512,24 @@ get_lis_culture <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 NULL
 #' @title {Energie und Umwelt (Energy and environment)}
 #' @description {Get data from LIS about energy and environment}
+#' @note {Only yearly data are available}
 #' @param rubrik_nr Number (1, 3, 4)
 #' \itemize{
 #' \item {1 = Immissionen}
 #' \item {3 = Wasserhygiene}
 #' \item {4 = Energieverbrauch}
 #' }
-#' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
 #' https://statistik.leipzig.de/statserv/servod.aspx
 #' @examples
@@ -507,8 +537,7 @@ NULL
 #' get_lis_environ(rubrik_nr = 1)
 #' }
 #' @export
-get_lis_environ <- function(rubrik_nr = 1,
-                            periode = "y") {
+get_lis_environ <- function(rubrik_nr = 1) {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% c(1, 3, 4)) {
@@ -516,6 +545,7 @@ get_lis_environ <- function(rubrik_nr = 1,
   }
 
   kategorie_nr <- 13
+  periode <- "y"
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
     kategorie_nr,
@@ -537,16 +567,16 @@ NULL
 #' @description {Get data from LIS about local administration, politics and finances}
 #' @param rubrik_nr Number (1 to 10)
 #' \itemize{
-#' \item {1 = Personal nach Aufgabenbereichen}
-#' \item {2 = Personal nach Produktbereichen}
-#' \item {3 = Personal nach Dienstverhaeltnissen}
-#' \item {4 = Einnahmen}
-#' \item {5 = Ausgaben}
+#' \item {1 = Personal nach Aufgabenbereichen (yearly data only)}
+#' \item {2 = Personal nach Produktbereichen (yearly data only)}
+#' \item {3 = Personal nach Dienstverhaeltnissen (yearly data only)}
+#' \item {4 = Einnahmen (yearly data only)}
+#' \item {5 = Ausgaben (yearly data only)}
 #' \item {6 = Steuereinnahmen}
-#' \item {7 = Realsteuervergleich}
-#' \item {8 = Zufriedenheit mit den Lebensbedingungen}
-#' \item {9 = Einsatz von Haushaltsmitteln}
-#' \item {10 = Probleme aus Buergersicht}
+#' \item {7 = Realsteuervergleich (yearly data only)}
+#' \item {8 = Zufriedenheit mit den Lebensbedingungen (yearly data only)}
+#' \item {9 = Einsatz von Haushaltsmitteln (yearly data only)}
+#' \item {10 = Probleme aus Buergersicht (yearly data only)}
 #' }
 #' @param periode Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.
 #' @references
@@ -578,7 +608,12 @@ get_lis_finances <- function(rubrik_nr = 1,
   download.file(url, destfile = tmpFile, method = "curl")
   data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  if (periode == "y") {
+    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
+  } else {
+    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
+                                                                     substr(colnames(data), 2, 2)), colnames(data))
+  }
   data
 }
 NULL
@@ -599,8 +634,7 @@ NULL
 #' get_lis_polls(rubrik_nr = 1)
 #' }
 #' @export
-get_lis_polls <- function(rubrik_nr = 1,
-                          periode = "y") {
+get_lis_polls <- function(rubrik_nr = 1) {
 
   # check for right rubrik_nr
   if (!rubrik_nr %in% 1:4) {
@@ -608,6 +642,7 @@ get_lis_polls <- function(rubrik_nr = 1,
   }
 
   kategorie_nr <- 15
+  periode <- "y"
   url <- paste0(
     "https://statistik.leipzig.de/opendata/api/values?kategorie_nr=",
     kategorie_nr,
