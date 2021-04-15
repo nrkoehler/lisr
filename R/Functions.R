@@ -678,6 +678,7 @@ NULL
 #' \item {YEAR} {(Year)}
 #' \item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 #' }
+#' @importFrom readr read_delim
 #' @export
 get_lis_babynames <- function(year = 2020) {
 
@@ -702,10 +703,11 @@ get_lis_babynames <- function(year = 2020) {
     year, ".csv"
   )
 
-  separator <- ifelse(year < 2020, ',', ';')
+  # separator <- ifelse(year < 2020, ',', ',')
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.delim(tmpFile, sep = separator, dec = ",", fileEncoding = 'utf-8')
+  # data <- read.delim(tmpFile, sep = separator, dec = ",", fileEncoding = 'utf-8')
+  data <- readr::read_delim(tmpFile, delim = ',')
   df.f <- data[1:4]
   df.m <- data[6:9]
   colnames(df.m) <- colnames(df.f)
