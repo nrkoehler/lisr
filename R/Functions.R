@@ -669,22 +669,20 @@ NULL
 #' \dontrun{
 #' get_lis_babynames(year = 2020)
 #' }
-#' @return Data frame with 6 columns
+#' @return Data frame with 4 columns
 #' \itemize{
-#' \item {RANG} {(Rank of name for girls and boys separately)}
 #' \item {ANZAHL} {(Number of babys having this name)}
 #' \item {VORNAME} {(Babyname)}
 #' \item {GESCHLECHT} {(Sex)}
 #' \item {YEAR} {(Year)}
-#' \item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 #' }
 #' @importFrom readr read_delim
 #' @export
-get_lis_babynames <- function(year = 2020) {
+get_lis_babynames <- function(year = 2022) {
 
   # check for right year
-  if (!year %in% 2014:2020) {
-    stop("'year' must be between 2014 and 2020!")
+  if (!year %in% 2014:2022) {
+    stop("'year' must be between 2014 and 2022!")
   }
 
   if (year == 2014) id <- "40c25656-03aa-4d86-b27f-79484effb51b"
@@ -694,13 +692,18 @@ get_lis_babynames <- function(year = 2020) {
   if (year == 2018) id <- "1b2c8423-4b95-4490-b6de-ae69e3e33484"
   if (year == 2019) id <- "680183af-ecdd-4670-9357-3038cf5efd7e"
   if (year == 2020) id <- "52b3ef26-1c2c-41db-8d4f-800fda635df5"
+  if (year == 2021) id <- "f96c5d02-36af-4b40-b498-8d70d4117d55"
+  if (year == 2022) id <- "8a2cbc72-a1dc-49c1-99d8-140e10ab24ad"
+
+  if (year %in% c(2014:2019, 2021)) name <- paste0("vornamensstatistik", year)
+  if (year %in% c(2020)) name <- paste0(year, "vornamensstatistik")
+  if (year %in% c(2022)) name <- paste0("vornamensstatistik-", year)
 
   dataset <- "c62e543b-a558-4fed-a5cb-973ba8dc787d"
   url <- paste0(
     "https://opendata.leipzig.de/dataset/",
     dataset, "/resource/",
-    id, "/download/vornamensstatistik",
-    year, ".csv"
+    id, "/download/", name, ".csv"
   )
 
   # separator <- ifelse(year < 2020, ',', ',')
@@ -708,15 +711,20 @@ get_lis_babynames <- function(year = 2020) {
   download.file(url, destfile = tmpFile, method = "curl")
   # data <- read.delim(tmpFile, sep = separator, dec = ",", fileEncoding = 'utf-8')
   data <- readr::read_delim(tmpFile, delim = ',')
-  df.f <- data[1:4]
-  df.m <- data[6:9]
+
+if (year %in% 2014:2020) {
+  df.f <- data[2:4]
+  df.m <- data[7:9]
   colnames(df.m) <- colnames(df.f)
   data <- rbind(df.f, df.m)
+} else if (year %in% 2021:2022) {
+  data <- data[1:3]
+ }
   data <- na.omit(data)
   data$YEAR <- year
-  colnames(data) <- toupper(colnames(data))
-  data$RANG_GESAMT <- rank(-data$ANZAHL, ties.method = "max")
-  data <- data[order(data$RANG_GESAMT), ]
+  colnames(data) <- c("ANZAHL", "VORNAME", "GESCHLECHT", "YEAR")
+  data <- data[order(data$ANZAHL), ]
+  data$GESCHLECHT <- tolower(data$GESCHLECHT)
   data <- subset(data, GESCHLECHT %in% c('w', 'm'))
 }
 NULL
