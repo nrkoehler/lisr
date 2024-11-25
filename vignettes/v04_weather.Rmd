@@ -70,8 +70,8 @@ ggplot(data.sub, aes(
 )) +
   geom_step() +
   geom_point(colour = "red3") +
-  scale_x_continuous(breaks = seq(2000, 2019, 2)) +
-  geom_smooth(method = "lm") +
+  scale_x_continuous(breaks = seq(2000, 2024, 2)) +
+  geom_smooth(method = "loess") +
   tidyquant::theme_tq() +
   theme(legend.position = "bottom") +
   facet_wrap(. ~ KENNZIFFER, nrow = 2, scales = "free") +
@@ -79,7 +79,7 @@ ggplot(data.sub, aes(
     x = NULL,
     y = NULL,
     title = "Temperature and rain in Leipzig",
-    subtitle = "2000 to 2019",
-    caption = "Source: Leipzig Informationssystem, 2020"
+    subtitle = "2000 to 2023",
+    caption = "Source: Leipzig Informationssystem, 2024"
   )
 ```
