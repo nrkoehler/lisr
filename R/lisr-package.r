@@ -1,5 +1,5 @@
 #' lisr.
 #'
 #' @name lisr
-#' @docType package
+#' @docType _PACKAGE
 NULL

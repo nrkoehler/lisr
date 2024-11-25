@@ -817,22 +817,13 @@ NULL
 #' }
 #' @export
 get_lis_trees <- function(...) {
-  dataset <- "8024d039-9b75-4154-a4ad-05968094f4eb"
-  id <- "476c4909-89f8-439a-b353-4ee8d28d74d7"
-  date <- "12032020"
-  url <- paste0(
-    "https://opendata.leipzig.de/dataset/",
-    dataset, "/resource/",
-    id, "/download/strassenbaumkatasterleipzig",
-    date, ".csv"
-  )
+  url <- "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3ABaeume&format_options=filename:Baumkataster_Stadt_Leipzig.csv&outputFormat=csv"
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.delim(tmpFile, sep = ";", comment.char="#",
-                     fileEncoding = 'WINDOWS-1252')
-  data$SHAPE <- NULL
+  data <- read.delim(tmpFile, sep = ",", comment.char="#",
+                     fileEncoding = 'utf-8')
   colnames(data) <- toupper(colnames(data))
-  data$STANDORTNUMMER <- as.character(data$STANDORTNUMMER)
+  data$OBJECTID <- as.character(data$OBJECTID)
   data
 }
 NULL
