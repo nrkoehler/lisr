@@ -104,7 +104,7 @@ df.top.10_girls <- data %>%
 #| fig.asp = 1.5
 
 ggplot(df.top.10_boys,
-       aes(x = YEAR, y = RANK, colour = VORNAME)) +
+       aes(x = YEAR, y = RANK, colour = as.character(YEAR))) +
   coord_flip() +
   scale_y_continuous(breaks = seq(1, 10, 1), sec.axis = dup_axis()) +
   scale_x_reverse(breaks = rev(seq(2014, 2023, 1))) +
@@ -125,11 +125,12 @@ ggplot(df.top.10_boys,
 
 
 ggplot(df.top.10_girls,
-       aes(x = YEAR, y = RANK, colour = VORNAME)) +
-  scale_y_reverse(breaks = seq(1, 10, 1), limits = c(10, 1)) +
-  scale_x_continuous(breaks = seq(2014, 2023, 1)) +
- # geom_line(aes(group = VORNAME), linetype = 3) +
-  geom_text(aes(label = VORNAME), fill = "#1e1e1e") +
+       aes(x = YEAR, y = RANK, colour = as.character(YEAR))) +
+  coord_flip() +
+  scale_y_continuous(breaks = seq(1, 10, 1), sec.axis = dup_axis()) +
+  scale_x_reverse(breaks = rev(seq(2014, 2023, 1))) +
+#  geom_line(aes(group = VORNAME), linetype = 3) +
+  geom_text(aes(label = VORNAME), fill = "#1e1e1e", hjust = 'center') +
   hrbrthemes::theme_modern_rc() +
   theme(legend.position = 'none',
         panel.grid.major = element_blank(),
