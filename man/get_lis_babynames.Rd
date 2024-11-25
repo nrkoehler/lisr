@@ -4,20 +4,18 @@
 \alias{get_lis_babynames}
 \title{{Vornamen (Babynames)}}
 \usage{
-get_lis_babynames(year = 2020)
+get_lis_babynames(year = 2022)
 }
 \arguments{
 \item{year}{Number (2014 to 2020)}
 }
 \value{
-Data frame with 6 columns
+Data frame with 4 columns
 \itemize{
-\item {RANG} {(Rank of name for girls and boys separately)}
 \item {ANZAHL} {(Number of babys having this name)}
 \item {VORNAME} {(Babyname)}
 \item {GESCHLECHT} {(Sex)}
 \item {YEAR} {(Year)}
-\item {RANG_GESAMT} {(Rank of name for girls and boys together (Computed by function))}
 }
 }
 \description{
