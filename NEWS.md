@@ -1,3 +1,7 @@
+# lisr 0.1.7
+
+* Large Update (2024-11-26)
+
 # lisr 0.1.5
 
 * Added year 2020 in `get_lis_babynames()`
