@@ -57,7 +57,7 @@ data.sub <- data %>%
 ```{r housing-long}
 data.sub <- data.sub %>%
   pivot_longer(
-    cols = starts_with("JAHR"),
+    cols = matches("\\d{4}"),
     names_to = "Year",
     values_to = "Rent"
   ) %>%
@@ -69,7 +69,8 @@ data.sub <- data.sub %>%
 ggplot(data.sub, aes(
   x = Year,
   y = Rent,
-  colour = MIETE
+  colour = MIETE,
+  group = MIETE
 )) +
   geom_line() +
   geom_point() +

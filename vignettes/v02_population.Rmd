@@ -98,13 +98,12 @@ Da uns zunächst nur die Angaben zur Gesamtbevölkerung interessieren, wird ein 
 
 ```{r pop-filter}
 data.sub <- data %>%
-  filter(KENNZIFFER == "Bevölkerung: Gesamt") %>% 
+  filter(stringr::str_detect(KENNZIFFER, "lkerung: Gesamt")) %>% 
     pivot_longer(
-    cols = starts_with("JAHR"),
+    cols = matches("\\d{4}"),
     names_to = "Year",
     values_to = "Residents"
-  ) %>%
-  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
+  ) 
 
 ```
 
@@ -118,9 +117,9 @@ ggplot(data.sub, aes(
   y = Residents / 1000,
   colour = QUELLE
 )) +
-  geom_line() +
+  geom_line(aes(group = QUELLE)) +
   geom_point() +
-  scale_x_continuous(breaks = seq(2000, 2024, 2)) +
+  scale_x_discrete(breaks = seq(2000, 2024, 2)) +
   scale_y_continuous(breaks = seq(480, 670, 20)) +
   hrbrthemes::theme_modern_rc() +
   theme(legend.position = "bottom",

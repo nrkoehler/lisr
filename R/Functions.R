@@ -32,12 +32,14 @@ get_lis_geo <- function(rubrik_nr = 1) {
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
+
 }
 NULL
 #' @title {Bevoelkerungsbestand (Population)}
@@ -55,6 +57,7 @@ NULL
 #' \dontrun{
 #' get_lis_pop(rubrik_nr = 1)
 #' }
+#' @importFrom readr read_csv
 #' @export
 get_lis_pop <- function(rubrik_nr = 1,
                         periode = "y") {
@@ -74,19 +77,14 @@ get_lis_pop <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
-  tmpFile <- tempfile()
-  download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = "utf-8")
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
-                        substr(colnames(data), 5, 6)), colnames(data))
-  }
-  data
-}
 
+  tmpFile <- tempfile()
+
+  download.file(url, destfile = tmpFile, method = "curl")
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
+}
 NULL
 #' @title {Bevoelkerungsbewegung (Population movement)}
 #' @description {Get data from LIS about population movement}
@@ -124,17 +122,13 @@ get_lis_move <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
 }
 #' @title {Gesundheit und Soziales (Public health and social affairs)}
 #' @description {Get data from LIS about public health and social affairs}
@@ -170,17 +164,13 @@ get_lis_health <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
-                                                                     substr(colnames(data), 5, 6)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
 }
 NULL
 #' @title {Bildung (Education)}
@@ -220,12 +210,13 @@ get_lis_edu <- function(rubrik_nr = 1) {
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",")
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
 }
 NULL
 #' @title {Bautaetigkeit und Wohnen (Building activity and housing)}
@@ -264,17 +255,14 @@ get_lis_housing <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
+
 }
 NULL
 #' @title {Erwerbstaetigkeit und Arbeitsmarkt (Occupation and labour market)}
@@ -311,17 +299,12 @@ get_lis_labour <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_',
-                                                                     substr(colnames(data), 5, 6)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Wirtschaft (Economy)}
@@ -367,17 +350,12 @@ get_lis_economy <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Einkommen und Preise (Income and prices)}
@@ -413,12 +391,13 @@ get_lis_money <- function(rubrik_nr = 1) {
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
+
 }
 NULL
 #' @title {Verkehr (Traffic and public transport)}
@@ -457,17 +436,12 @@ get_lis_traffic <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Kultur und Sport (Culture and sports)}
@@ -508,17 +482,12 @@ get_lis_culture <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Energie und Umwelt (Energy and environment)}
@@ -555,12 +524,12 @@ get_lis_environ <- function(rubrik_nr = 1) {
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Stadtverwaltung, Kommunalpolitik, Kommunalfinanzen (Local administration, politics and finances)}
@@ -604,17 +573,12 @@ get_lis_finances <- function(rubrik_nr = 1,
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  if (periode == "y") {
-    colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  } else {
-    colnames(data) <- ifelse(grepl('\\d{4}', colnames(data)), paste0("JAHR_", substr(colnames(data), 8, 11), '_Q',
-                                                                     substr(colnames(data), 2, 2)), colnames(data))
-  }
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Wahlen (Polls)}
@@ -652,12 +616,12 @@ get_lis_polls <- function(rubrik_nr = 1) {
     periode,
     "&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Vornamen (Babynames)}
@@ -729,10 +693,10 @@ get_lis_babynames <- function(year = 2022) {
     resource, "/download/", name, ".csv"
   )
 
-  # separator <- ifelse(year < 2020, ',', ',')
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  # data <- read.delim(tmpFile, sep = separator, dec = ",", fileEncoding = 'utf-8')
+
   data <- readr::read_delim(tmpFile, delim = ',',
                             show_col_types = FALSE)
 
@@ -789,12 +753,12 @@ get_lis_kd <- function(kategorie_nr = 1) {
     kategorie_nr,
     "&rubrik_nr=1&periode=y&format=csv"
   )
+
   tmpFile <- tempfile()
+
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.csv(tmpFile, dec = ",", fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  colnames(data) <- gsub("^X", "JAHR_", colnames(data))
-  data
+
+  data <- lisr:::read_csv3(data = tmpFile)
 }
 NULL
 #' @title {Straßenbaumkataster (Trees, planted)}
@@ -818,13 +782,16 @@ NULL
 #' @export
 get_lis_trees <- function(...) {
   url <- "https://geodienste.leipzig.de/l3/OpenData//wfs?VERSION=1.3.0&REQUEST=getFeature&typeName=OpenData%3ABaeume&format_options=filename:Baumkataster_Stadt_Leipzig.csv&outputFormat=csv"
+
   tmpFile <- tempfile()
   download.file(url, destfile = tmpFile, method = "curl")
-  data <- read.delim(tmpFile, sep = ",", comment.char="#",
-                     fileEncoding = 'utf-8')
-  colnames(data) <- toupper(colnames(data))
-  data$OBJECTID <- as.character(data$OBJECTID)
-  data
+  # data <- read.delim(tmpFile, sep = ",", comment.char="#",
+  #                    fileEncoding = 'utf-8')
+  data <- lisr:::read_csv3(data = tmpFile)
+ colnames(data) <- toupper(colnames(data))
+ data$OBJECTID <- as.character(data$OBJECTID)
+ data <- data
+
 }
 NULL
 #' @title {Strassennamenverzeichnis (Streets register)}
@@ -861,7 +828,7 @@ get_lis_streets <- function(...) {
   data <- readxl::read_xlsx(tmpFile)
   colnames(data) <- toupper(colnames(data))
   colnames(data)[5] <- 'STRASSENNAME'
-  subset(data, !is.na(ORTSTEIL))
+  data <- subset(data, !is.na(ORTSTEIL))
 }
 NULL
 #' @title {Shapefile mit Grenzen der Bezirke / Ortsteile (Shapefile)}
@@ -901,6 +868,6 @@ get_lis_shapefile <- function(shape = "Ortsteile", ...) {
   unzip(zipfile = temp, exdir = temp2)
   data <- list.files(temp2, pattern = ".shp$", full.names=TRUE)
   data <- sf::st_read(data)
-  data
+
 }
 NULL

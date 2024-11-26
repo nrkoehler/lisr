@@ -42,11 +42,11 @@ data$KENNZIFFER
 
 ```{r weather-filter}
 data.sub <- data %>%
-  filter(KENNZIFFER == "Lufttemperatur (Jahresmittel)" |
-    KENNZIFFER == "Niederschlagshöhe (Jahressumme)") %>%
+  filter(str_detect(KENNZIFFER,"^Lufttemperatur") |
+    str_detect(KENNZIFFER, "^Niederschlagsh")) %>%
   mutate(KENNZIFFER = case_when(
-    KENNZIFFER == "Lufttemperatur (Jahresmittel)" ~ "Temperature in °C (yearly mean)",
-    KENNZIFFER == "Niederschlagshöhe (Jahressumme)" ~ "Rain in l (yearly sum)",
+    str_detect(KENNZIFFER,"^Lufttemperatur") ~ "Temperature in °C (yearly mean)",
+    str_detect(KENNZIFFER, "^Niederschlagsh") ~ "Rain in l (yearly sum)",
     TRUE ~ as.character(NA)
   ))
 
@@ -55,11 +55,11 @@ data.sub <- data %>%
 ```{r weather-long}
 data.sub <- data.sub %>%
   pivot_longer(
-    cols = starts_with("JAHR"),
+    cols = matches("\\d{4}"),
     names_to = "Year",
     values_to = "Value"
   ) %>%
-  mutate(Year = as.numeric(str_remove(Year, "JAHR_")))
+  mutate(Year = as.numeric(Year))
 ```
 
 
