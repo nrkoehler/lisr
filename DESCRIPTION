@@ -21,8 +21,11 @@ Depends:
     R (>= 2.10)
 Imports: 
     sf,
-    readxl
+    readxl,
+    readr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    pmaps,
+    hrbrthemes
 VignetteBuilder: knitr
