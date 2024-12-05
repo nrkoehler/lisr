@@ -14,8 +14,6 @@ get_lis_polls(rubrik_nr = 1)
 \item {3 = Landtagswahlen}
 \item {4 = Stadtratswahlen}
 }}
-
-\item{periode}{Yearly ('y') or quarterly ('q'). Quarterly data are nor always available.}
 }
 \description{
 {Get data from LIS about polls}
