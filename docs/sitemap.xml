@@ -21,7 +21,9 @@
 <url><loc>/news/index.html</loc></url>
 <url><loc>/reference/df.DISTRICTS_LARGE.html</loc></url>
 <url><loc>/reference/df.DISTRICTS_SMALL.html</loc></url>
+<url><loc>/reference/dfr.bundestag_2021.html</loc></url>
 <url><loc>/reference/get_lis_babynames.html</loc></url>
+<url><loc>/reference/get_lis_bundestag.html</loc></url>
 <url><loc>/reference/get_lis_culture.html</loc></url>
 <url><loc>/reference/get_lis_economy.html</loc></url>
 <url><loc>/reference/get_lis_edu.html</loc></url>

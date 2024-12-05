@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<script src="../deps/jquery-3.6.1/jquery-3.6.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -126,16 +126,16 @@ gelöscht werden.</p>
 enthaltenen Datenreihen wieder.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span><span class="op">$</span><span class="va">KENNZIFFER</span></span>
-<span><span class="co">#&gt;  [1] "Bev&lt;U+00F6&gt;lkerung insgesamt"        "M&lt;U+00E4&gt;nner"                      </span></span>
+<span><span class="co">#&gt;  [1] "Bevölkerung insgesamt"               "Männer"                             </span></span>
 <span><span class="co">#&gt;  [3] "Frauen"                              "Deutsche"                           </span></span>
-<span><span class="co">#&gt;  [5] "M&lt;U+00E4&gt;nner"                       "Frauen"                             </span></span>
-<span><span class="co">#&gt;  [7] "Ausl&lt;U+00E4&gt;nder"                    "M&lt;U+00E4&gt;nner"                      </span></span>
-<span><span class="co">#&gt;  [9] "Frauen"                              "Bev&lt;U+00F6&gt;lkerung insgesamt"       </span></span>
-<span><span class="co">#&gt; [11] "M&lt;U+00E4&gt;nner"                       "Frauen"                             </span></span>
-<span><span class="co">#&gt; [13] "Deutsche"                            "M&lt;U+00E4&gt;nner"                      </span></span>
-<span><span class="co">#&gt; [15] "Frauen"                              "Ausl&lt;U+00E4&gt;nder"                   </span></span>
-<span><span class="co">#&gt; [17] "M&lt;U+00E4&gt;nner"                       "Frauen"                             </span></span>
-<span><span class="co">#&gt; [19] "Einwohner mit Migrationshintergrund" "M&lt;U+00E4&gt;nner"                      </span></span>
+<span><span class="co">#&gt;  [5] "Männer"                              "Frauen"                             </span></span>
+<span><span class="co">#&gt;  [7] "Ausländer"                           "Männer"                             </span></span>
+<span><span class="co">#&gt;  [9] "Frauen"                              "Bevölkerung insgesamt"              </span></span>
+<span><span class="co">#&gt; [11] "Männer"                              "Frauen"                             </span></span>
+<span><span class="co">#&gt; [13] "Deutsche"                            "Männer"                             </span></span>
+<span><span class="co">#&gt; [15] "Frauen"                              "Ausländer"                          </span></span>
+<span><span class="co">#&gt; [17] "Männer"                              "Frauen"                             </span></span>
+<span><span class="co">#&gt; [19] "Einwohner mit Migrationshintergrund" "Männer"                             </span></span>
 <span><span class="co">#&gt; [21] "Frauen"                              "Einwohner mit Nebenwohnsitz"</span></span></code></pre></div>
 <p>Leider sind die Angaben nicht eindeutig, sodass einige Nacharbeiten
 erforderlich sind.</p>
@@ -166,11 +166,11 @@ benötigt.</p>
 <span>    HERKUNFT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Gesamt"</span>, <span class="fl">3</span><span class="op">)</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Deutsche"</span>, <span class="fl">3</span><span class="op">)</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Ausl&lt;U+00E4&gt;nder"</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Ausländer"</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span>    <span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Migrationshintergrund"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">"Nebenwohnsitz"</span><span class="op">)</span>,</span>
 <span>    KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span><span class="va">KENNZIFFER</span>, <span class="st">"^\\w+"</span><span class="op">)</span>,</span>
 <span>    KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html" class="external-link">str_replace</a></span><span class="op">(</span><span class="va">KENNZIFFER</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Deutsche"</span>, <span class="st">"Ausl&lt;U+00E4&gt;nder"</span>,</span>
+<span>      <span class="st">"Deutsche"</span>, <span class="st">"Ausländer"</span>,</span>
 <span>      <span class="st">"Einwohner mit  Migrationshintergrund"</span></span>
 <span>    <span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>, <span class="st">"Gesamt"</span><span class="op">)</span>,</span>
 <span>    KENNZIFFER <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">KENNZIFFER</span>, <span class="va">HERKUNFT</span>, sep <span class="op">=</span> <span class="st">": "</span><span class="op">)</span></span>
