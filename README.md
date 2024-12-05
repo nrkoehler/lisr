@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![](https://img.shields.io/badge/devel%20version-0.1.7-blue.svg)](https://github.com/nrkoehler/lisr)
+[![R-CMD-check](https://github.com/nrkoehler/lisr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nrkoehler/lisr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 R interface to `Leipzig Informationssystem`
