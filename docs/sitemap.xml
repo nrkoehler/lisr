@@ -1,26 +1,14 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
-<url><loc>/articles/01_maps.html</loc></url>
-<url><loc>/articles/02_population.html</loc></url>
-<url><loc>/articles/03_housing.html</loc></url>
-<url><loc>/articles/04_weather.html</loc></url>
-<url><loc>/articles/05-babynames.html</loc></url>
-<url><loc>/articles/babynames.html</loc></url>
-<url><loc>/articles/housing.html</loc></url>
 <url><loc>/articles/index.html</loc></url>
-<url><loc>/articles/maps.html</loc></url>
-<url><loc>/articles/population.html</loc></url>
 <url><loc>/articles/v01_maps.html</loc></url>
 <url><loc>/articles/v02_population.html</loc></url>
 <url><loc>/articles/v03_housing.html</loc></url>
 <url><loc>/articles/v04_weather.html</loc></url>
 <url><loc>/articles/v05-babynames.html</loc></url>
-<url><loc>/articles/weather.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
-<url><loc>/reference/df.DISTRICTS_LARGE.html</loc></url>
-<url><loc>/reference/df.DISTRICTS_SMALL.html</loc></url>
 <url><loc>/reference/dfr.bundestag_2021.html</loc></url>
 <url><loc>/reference/get_lis_babynames.html</loc></url>
 <url><loc>/reference/get_lis_bundestag.html</loc></url>
